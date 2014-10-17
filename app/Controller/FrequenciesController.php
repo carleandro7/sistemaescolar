@@ -1,0 +1,110 @@
+<?php
+App::uses('AppController', 'Controller');
+/**
+ * Frequencies Controller
+ *
+ * @property Frequency $Frequency
+ * @property PaginatorComponent $Paginator
+ */
+class FrequenciesController extends AppController {
+
+/**
+ * Components
+ *
+ * @var array
+ */
+	public $components = array('Paginator');
+
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function index() {
+		$this->Frequency->recursive = 0;
+		$this->set('frequencies', $this->Paginator->paginate());
+	}
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		if (!$this->Frequency->exists($id)) {
+			throw new NotFoundException(__('Invalid frequency'));
+		}
+		$options = array('conditions' => array('Frequency.' . $this->Frequency->primaryKey => $id));
+		$this->set('frequency', $this->Frequency->find('first', $options));
+	}
+
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function add() {
+		if ($this->request->is('post')) {
+			$this->Frequency->create();
+			if ($this->Frequency->save($this->request->data)) {
+				$this->Session->setFlash(__('The frequency has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The frequency could not be saved. Please, try again.'));
+			}
+		}
+		$classnotes = $this->Frequency->Classnote->find('list');
+		$disciplineStudents = $this->Frequency->DisciplineStudent->find('list');
+		$this->set(compact('classnotes', 'disciplineStudents'));
+	}
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function edit($id = null) {
+		if (!$this->Frequency->exists($id)) {
+			throw new NotFoundException(__('Invalid frequency'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Frequency->save($this->request->data)) {
+				$this->Session->setFlash(__('The frequency has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The frequency could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('Frequency.' . $this->Frequency->primaryKey => $id));
+			$this->request->data = $this->Frequency->find('first', $options);
+		}
+		$classnotes = $this->Frequency->Classnote->find('list');
+		$disciplineStudents = $this->Frequency->DisciplineStudent->find('list');
+		$this->set(compact('classnotes', 'disciplineStudents'));
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$this->Frequency->id = $id;
+		if (!$this->Frequency->exists()) {
+			throw new NotFoundException(__('Invalid frequency'));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Frequency->delete()) {
+			$this->Session->setFlash(__('The frequency has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The frequency could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+}
