@@ -14,7 +14,6 @@
                     </div>
                 </div>
 
-
                 <div class="col-lg-8">  
                     <div class="form-group">
                         <?php echo $this->Form->input('razaosocial', array('label' => 'Razão Social', 'class' => 'form-control')); ?>
