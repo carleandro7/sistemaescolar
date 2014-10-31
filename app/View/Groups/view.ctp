@@ -80,8 +80,8 @@
 			<td class="actions">
                                 <?php echo $this->Html->link(__('Notas'), array('controller' => 'Bills', 'action' => 'index', $disciplineGroup['DisciplineGroup']['id'])); ?>
                                 <?php echo $this->Html->link(__('Frequencia'), array('controller' => 'Classnotes', 'action' => 'index', $disciplineGroup['DisciplineGroup']['id'])); ?>
+                            	<?php echo $this->Html->link(__('Professor'), array('controller' => 'DisciplineGroups', 'action' => 'edit', $disciplineGroup['DisciplineGroup']['id'], $group['Group']['id'])); ?>
 				<?php echo $this->Html->link(__('View'), array('controller' => 'DisciplineGroups', 'action' => 'view', $disciplineGroup['DisciplineGroup']['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'DisciplineGroups', 'action' => 'edit', $disciplineGroup['DisciplineGroup']['id'], $group['Group']['id'])); ?>
 				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'DisciplineGroups', 'action' => 'delete', $disciplineGroup['DisciplineGroup']['id']), array(), __('Are you sure you want to delete # %s?', $disciplineGroup['Discipline']['id'])); ?>
 			</td>
 		</tr>

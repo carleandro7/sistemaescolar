@@ -80,48 +80,30 @@
 		</dd>
 	</dl>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Teacher'), array('action' => 'edit', $teacher['Teacher']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Teacher'), array('action' => 'delete', $teacher['Teacher']['id']), array(), __('Are you sure you want to delete # %s?', $teacher['Teacher']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Teachers'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Teacher'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Discipline Groups'), array('controller' => 'discipline_groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Discipline Group'), array('controller' => 'discipline_groups', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Discipline Groups'); ?></h3>
-	<?php if (!empty($teacher['DisciplineGroup'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Teacher Id'); ?></th>
-		<th><?php echo __('Discipline Id'); ?></th>
-		<th><?php echo __('Group Id'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($teacher['DisciplineGroup'] as $disciplineGroup): ?>
-		<tr>
-			<td><?php echo $disciplineGroup['id']; ?></td>
-			<td><?php echo $disciplineGroup['teacher_id']; ?></td>
-			<td><?php echo $disciplineGroup['discipline_id']; ?></td>
-			<td><?php echo $disciplineGroup['group_id']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'discipline_groups', 'action' => 'view', $disciplineGroup['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'discipline_groups', 'action' => 'edit', $disciplineGroup['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'discipline_groups', 'action' => 'delete', $disciplineGroup['id']), array(), __('Are you sure you want to delete # %s?', $disciplineGroup['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Discipline Group'), array('controller' => 'discipline_groups', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
+    <div class="related">
+            <h3><?php echo __('Related Discipline Groups'); ?></h3>
+            <?php if (!empty($teacher['DisciplineGroup'])): ?>
+            <table cellpadding = "0" cellspacing = "0">
+            <tr>
+                    <th><?php echo __('Disciplina'); ?></th>
+                    <th><?php echo __('Tumra'); ?></th>
+                    <th><?php echo __('Ano'); ?></th>
+                    <th class="actions"><?php echo __('Actions'); ?></th>
+            </tr>
+            <?php foreach ($disciplineGroups as $disciplineGroup): ?>
+                    <tr>
+                            <td><?php echo $disciplineGroup['Discipline']['nome']; ?></td>
+                            <td><?php echo $disciplineGroup['Group']['nome']; ?></td>
+                            <td><?php echo $disciplineGroup['Group']['ano']; ?></td>
+                            <td class="actions">
+                                    <?php echo $this->Html->link(__('View'), array('controller' => 'discipline_groups', 'action' => 'view', $disciplineGroup['DisciplineGroup']['id'])); ?>
+                                    <?php echo $this->Html->link(__('Edit'), array('controller' => 'discipline_groups', 'action' => 'edit', $disciplineGroup['DisciplineGroup']['id'])); ?>
+                            </td>
+                    </tr>
+            <?php endforeach; ?>
+            </table>
+    <?php endif; ?>
+
+     </div>
 </div>
-    </div>

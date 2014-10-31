@@ -2,9 +2,14 @@
 <?php echo $this->Form->create('DisciplineGroup'); ?>
 	<fieldset>
 		<legend><?php echo __('Add Discipline Group'); ?></legend>
-	<?php
-		echo $this->Form->input('teacher_id');
-	?>
+                 <label>Professores</label>
+                <select name="data[DisciplineGroup][teacher_id]"> 
+                    <option  value="" > </option>
+                    	<?php foreach ($teachers as $teacher): ?>
+                            <option value="<?php echo key($teachers);?>" ><?php echo $teacher; ?> </option>
+                        <?php endforeach; ?>
+                </select>
+                  <label>Disciplinas</label>
                 <select name="data[DisciplineGroup][discipline_id]"> 
                     <option  value="" > </option>
                 <?php while ($discipline = current($disciplines)) { ?>

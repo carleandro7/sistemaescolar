@@ -53,7 +53,10 @@ class GroupsController extends AppController {
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
 		$this->set('group', $this->Group->find('first', $options));
                	$this->loadModel('GroupStudent');
-                $sqlGroupStudent='SELECT `GroupStudent`.`id`, `GroupStudent`.`group_id`, `GroupStudent`.`student_id`, `Student`.`id`, `Student`.`nome` FROM `escolabd`.`group_students` AS `GroupStudent` LEFT JOIN `escolabd`.`students` AS `Student` ON (`GroupStudent`.`student_id` = `Student`.`id`) WHERE `GroupStudent`.`group_id` = '.$id;
+                $sqlGroupStudent='SELECT `GroupStudent`.`id`, `GroupStudent`.`group_id`, `GroupStudent`.`student_id`, '
+                        . '`Student`.`id`, `Student`.`nome` FROM `escolabd`.`group_students` AS `GroupStudent` LEFT JOIN '
+                        . '`escolabd`.`students` AS `Student` ON (`GroupStudent`.`student_id` = `Student`.`id`) '
+                        . 'WHERE `GroupStudent`.`group_id` = '.$id.' ORDER BY `Student`.`nome` ASC';
                 $groupStudents=$this->GroupStudent->query($sqlGroupStudent);
                 $this->set(compact('groupStudents'));
         }

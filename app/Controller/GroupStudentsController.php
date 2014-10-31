@@ -51,13 +51,27 @@ class GroupStudentsController extends AppController {
 			$this->GroupStudent->create();
 			if ($this->GroupStudent->save($this->request->data)) {
 				$this->Session->setFlash(__('The group student has been saved.'));
-				return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $id));
+				return $this->redirect(array('controller' => 'groups', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The group student could not be saved. Please, try again.'));
 			}
 		}
                 $options = array('fields'=>array('nome'),'conditions' => array('Group.id' => $id));
 		$groups = $this->GroupStudent->Group->find('list', $options);
+       		$students = $this->GroupStudent->Student->find('list', array('fields'=>array('nome')));
+		$this->set(compact('groups', 'students'));
+	}
+        public function addstudents() {
+		if ($this->request->is('post')) {
+			$this->GroupStudent->create();
+			if ($this->GroupStudent->save($this->request->data)) {
+				$this->Session->setFlash(__('The group student has been saved.'));
+				return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $id));
+			} else {
+				$this->Session->setFlash(__('The group student could not be saved. Please, try again.'));
+			}
+		}
+		$groups = $this->GroupStudent->Group->find('list', array('fields'=>array('nome')));
        		$students = $this->GroupStudent->Student->find('list', array('fields'=>array('nome')));
 		$this->set(compact('groups', 'students'));
 	}

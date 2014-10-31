@@ -38,6 +38,11 @@ class TeachersController extends AppController {
 		}
 		$options = array('conditions' => array('Teacher.' . $this->Teacher->primaryKey => $id));
 		$this->set('teacher', $this->Teacher->find('first', $options));
+                $this->loadModel('DisciplineGroup');   
+                $sql='SELECT `DisciplineGroup`.`id`, `DisciplineGroup`.`teacher_id`, `DisciplineGroup`.`discipline_id`, `DisciplineGroup`.`group_id`, `Discipline`.`id`, `Discipline`.`nome`, `Group`.`id`, `Group`.`nome`, `Group`.`ano` FROM `escolabd`.`discipline_groups` AS `DisciplineGroup` LEFT JOIN `escolabd`.`disciplines` AS `Discipline` ON (`DisciplineGroup`.`discipline_id` = `Discipline`.`id`) LEFT JOIN `escolabd`.`groups` AS `Group` ON (`DisciplineGroup`.`group_id` = `Group`.`id`) WHERE `DisciplineGroup`.`teacher_id` = '. $id;
+                
+                $disciplineGroups= $this->DisciplineGroup->query($sql);
+                $this->set(compact('disciplineGroups'));
 	}
 
 /**

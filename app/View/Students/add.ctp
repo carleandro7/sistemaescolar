@@ -1,3 +1,8 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($){        
+          $("#cpf").mask("999.999.999-99");
+    });
+</script>
 <h2><?php echo __('Adicionar Estudante'); ?></h2>
 <?php echo $this->Form->create('Student'); ?>
 
@@ -37,13 +42,13 @@
                 
                  <div class="col-lg-4">    
                     <div class="form-group">
-                        <?php echo $this->Form->input('cpf', array('label' => 'CPF', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('cpf', array('mask' => '999.999.99', 'label' => 'CPF', 'class' => 'form-control')); ?>
                     </div>
                 </div>
                 
                  <div class="col-lg-4">    
                     <div class="form-group">
-                        <?php echo $this->Form->input('rg', array('label' => 'RG', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('rg', array('mask' => '999.999.99', 'label' => 'RG', 'class' => 'form-control')); ?>
                     </div>
                 </div>
                 
@@ -223,19 +228,3 @@
 <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
 <?php echo $this->Form->end(); ?>
 
-
-
-
-	
-                
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Students'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Schools'), array('controller' => 'schools', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New School'), array('controller' => 'schools', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Payments'), array('controller' => 'payments', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Payment'), array('controller' => 'payments', 'action' => 'add')); ?> </li>
-	</ul>
-</div>

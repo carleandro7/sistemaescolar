@@ -79,11 +79,3 @@
             ?>
         </div>
     </div>
-    <div class="actions">
-        <h3><?php echo __('Actions'); ?></h3>
-        <ul>
-            <li><?php echo $this->Html->link(__('New Teacher'), array('action' => 'add')); ?></li>
-            <li><?php echo $this->Html->link(__('List Discipline Groups'), array('controller' => 'discipline_groups', 'action' => 'index')); ?> </li>
-            <li><?php echo $this->Html->link(__('New Discipline Group'), array('controller' => 'discipline_groups', 'action' => 'add')); ?> </li>
-        </ul>
-    </div>

@@ -1,3 +1,13 @@
+<script language='JavaScript'>
+function SomenteNumero(e){
+    var tecla=(window.event)?event.keyCode:e.which;   
+    if((tecla>47 && tecla<58)) return true;
+    else{
+    	if (tecla==8 || tecla==0) return true;
+	else  return false;
+    }
+}
+</script>
 <h2><?php echo __('Adicionar Turma'); ?></h2>
 
 <?php echo $this->Form->create('Group'); ?>
@@ -19,7 +29,7 @@
 
                 <div class="col-lg-4">  
                     <div class="form-group">
-                        <?php echo $this->Form->input('ano', array('label' => 'Ano', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('ano', array('label' => 'Ano', 'class' => 'form-control', 'onkeypress'=>'return SomenteNumero(event)')); ?>
                     </div>
                 </div>
 
@@ -37,7 +47,7 @@
                 
                 <div class="col-lg-4">    
                     <div class="form-group">
-                        <?php echo $this->Form->input('capacidade', array('label' => 'Capacidade', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('capacidade', array('label' => 'Capacidade', 'class' => 'form-control', 'onkeypress'=>'return SomenteNumero(event)')); ?>
                     </div>
                 </div>
                 

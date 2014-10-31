@@ -1,3 +1,4 @@
+<div class="groupstudents index">
 <h2><?php echo __('Group'); ?></h2>
 
 <div class="col-lg-4">
@@ -52,7 +53,7 @@
     
     <div class="panel panel-default">
         <div class="panel-heading">
-            <?php echo $this->Html->link(__('New Discipline Group'), array('controller' => 'groupstudents', 'action' => 'add', $group['Group']['id'])); ?>
+            <?php echo $this->Html->link(__('Adicionar Estudante'), array('controller' => 'groupstudents', 'action' => 'add', $group['Group']['id'])); ?>
         </div>
         <?php if (!empty($groupStudents)): ?>
            <div class="panel-body">

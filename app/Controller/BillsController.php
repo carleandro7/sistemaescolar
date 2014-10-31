@@ -66,12 +66,15 @@ class BillsController extends AppController {
 			}
 		}
                 $this->loadModel('DisciplineStudent');
-                
-                $sql = 'SELECT `DisciplineStudent`.`id`, `DisciplineStudent`.`discipline_groups_id`, `DisciplineStudent`.`students_id`, `DisciplineGroups`.`id`, `DisciplineGroups`.`teacher_id`, `DisciplineGroups`.`discipline_id`, `DisciplineGroups`.`group_id`, `Students`.`id`, `Students`.`nome` FROM `escolabd`.`discipline_students` AS `DisciplineStudent` LEFT JOIN `escolabd`.`discipline_groups` AS `DisciplineGroups` ON (`DisciplineStudent`.`discipline_groups_id` = `DisciplineGroups`.`id`) LEFT JOIN `escolabd`.`students` AS `Students` ON (`DisciplineStudent`.`students_id` = `Students`.`id`) WHERE `DisciplineGroups`.`id` = '.$idgroup;
+                $sql = 'SELECT `DisciplineStudent`.`id`, `DisciplineStudent`.`discipline_groups_id`, `DisciplineStudent`.`students_id`, `DisciplineGroups`.`id`, `DisciplineGroups`.`teacher_id`, '
+                        . '`DisciplineGroups`.`discipline_id`, `DisciplineGroups`.`group_id`, `Students`.`id`, `Students`.`nome` FROM `escolabd`.`discipline_students` AS `DisciplineStudent` LEFT JOIN '
+                        . '`escolabd`.`discipline_groups` AS `DisciplineGroups` ON (`DisciplineStudent`.`discipline_groups_id` '
+                        . '= `DisciplineGroups`.`id`) LEFT JOIN `escolabd`.`students` AS `Students` ON '
+                        . '(`DisciplineStudent`.`students_id` = `Students`.`id`) WHERE `DisciplineGroups`.`id` = '.$idgroup
+                        .' ORDER BY `Students`.`nome` ASC';
                 $billStudents  = $this->DisciplineStudent->query($sql);
                	$options = array('conditions' => array('DisciplineGroup.id' => $idgroup));
 		$disciplineGroups = $this->Bill->DisciplineGroup->find('list', $options);
-                
 		$this->set(compact('disciplineGroups', 'billStudents'));
 	}
 
@@ -99,12 +102,11 @@ class BillsController extends AppController {
 			$this->request->data = $this->Bill->find('first', $options);
                         
                         $iddisciplinegroups= $this->request->data['Bill']['discipline_group_id'];
-                        $sql='SELECT `BillStudent`.`id`,`BillStudent`.`nota`,`BillStudent`.`discipline_student_id`, `BillStudent`.`bill_id`,`DisciplineStudent`.`id`, `DisciplineStudent`.`discipline_groups_id`, `DisciplineStudent`.`students_id`, `DisciplineGroups`.`id`, `DisciplineGroups`.`teacher_id`, `DisciplineGroups`.`discipline_id`, `DisciplineGroups`.`group_id`, `Students`.`id`, `Students`.`nome` FROM `escolabd`.`discipline_students` AS `DisciplineStudent` LEFT JOIN `escolabd`.`discipline_groups` AS `DisciplineGroups` ON (`DisciplineStudent`.`discipline_groups_id` = `DisciplineGroups`.`id`) LEFT JOIN `escolabd`.`students` AS `Students` ON (`DisciplineStudent`.`students_id` = `Students`.`id`) LEFT JOIN `escolabd`.`bill_students` AS `BillStudent` ON (`DisciplineStudent`.`id` = `BillStudent`.`discipline_student_id` and `BillStudent`.`bill_id` = '.$id.') WHERE `DisciplineGroups`.`id` = '.$iddisciplinegroups;
+                        $sql='SELECT `BillStudent`.`id`,`BillStudent`.`nota`,`BillStudent`.`discipline_student_id`, `BillStudent`.`bill_id`,`DisciplineStudent`.`id`, `DisciplineStudent`.`discipline_groups_id`, `DisciplineStudent`.`students_id`, `DisciplineGroups`.`id`, `DisciplineGroups`.`teacher_id`, `DisciplineGroups`.`discipline_id`, `DisciplineGroups`.`group_id`, `Students`.`id`, `Students`.`nome` FROM `escolabd`.`discipline_students` AS `DisciplineStudent` LEFT JOIN `escolabd`.`discipline_groups` AS `DisciplineGroups` ON (`DisciplineStudent`.`discipline_groups_id` = `DisciplineGroups`.`id`) LEFT JOIN `escolabd`.`students` AS `Students` ON (`DisciplineStudent`.`students_id` = `Students`.`id`) LEFT JOIN `escolabd`.`bill_students` AS `BillStudent` ON (`DisciplineStudent`.`id` = `BillStudent`.`discipline_student_id` and `BillStudent`.`bill_id` = '.$id.') WHERE `DisciplineGroups`.`id` = '.$iddisciplinegroups
+                        .' ORDER BY `Students`.`nome` ASC';
                         $billStudents  = $this->Bill->BillStudent->query($sql);
                         $this->set(compact('billStudents'));
 		}
-		
-		
 	}
 
 /**

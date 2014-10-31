@@ -13,30 +13,29 @@
 
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('teacher_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('discipline_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('group_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('Discipline.nome','Disciplinas'); ?></th>
+                        <th><?php echo $this->Paginator->sort('Teacher.nome','Professores'); ?></th>
+			<th><?php echo $this->Paginator->sort('Group.nome', 'Turmas'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
 	<?php foreach ($disciplineGroups as $disciplineGroup): ?>
 	<tr>
-		<td><?php echo h($disciplineGroup['DisciplineGroup']['id']); ?>&nbsp;</td>
+		
 		<td>
-			<?php echo $this->Html->link($disciplineGroup['Teacher']['id'], array('controller' => 'teachers', 'action' => 'view', $disciplineGroup['Teacher']['id'])); ?>
+			<?php echo $this->Html->link($disciplineGroup['Discipline']['nome'], array('controller' => 'disciplines', 'action' => 'view', $disciplineGroup['Discipline']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($disciplineGroup['Discipline']['id'], array('controller' => 'disciplines', 'action' => 'view', $disciplineGroup['Discipline']['id'])); ?>
+                        <?php echo $this->Html->link($disciplineGroup['Teacher']['nome'], array('controller' => 'teachers', 'action' => 'view', $disciplineGroup['Teacher']['id'])); ?>			
 		</td>
 		<td>
-			<?php echo $this->Html->link($disciplineGroup['Group']['id'], array('controller' => 'groups', 'action' => 'view', $disciplineGroup['Group']['id'])); ?>
+			<?php echo $this->Html->link($disciplineGroup['Group']['nome'], array('controller' => 'groups', 'action' => 'view', $disciplineGroup['Group']['id'])); ?>
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $disciplineGroup['DisciplineGroup']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $disciplineGroup['DisciplineGroup']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $disciplineGroup['DisciplineGroup']['id']), array(), __('Are you sure you want to delete # %s?', $disciplineGroup['DisciplineGroup']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $disciplineGroup['DisciplineGroup']['id']), array(), __('Deseja deletar disciplina # %s?', $disciplineGroup['Discipline']['nome'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -61,16 +60,4 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Discipline Group'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Teachers'), array('controller' => 'teachers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Teacher'), array('controller' => 'teachers', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Disciplines'), array('controller' => 'disciplines', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Discipline'), array('controller' => 'disciplines', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
-	</ul>
 </div>

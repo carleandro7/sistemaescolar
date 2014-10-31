@@ -1,3 +1,13 @@
+<script language='JavaScript'>
+function SomenteNumero(e){
+    var tecla=(window.event)?event.keyCode:e.which;   
+    if((tecla>47 && tecla<58)) return true;
+    else{
+    	if (tecla==8 || tecla==0) return true;
+	else  return false;
+    }
+}
+</script>
 <h2><?php echo __('Editar Disciplina'); ?></h2>
 <?php echo $this->Form->create('Discipline'); ?>
 <div class="row">
@@ -17,19 +27,19 @@
 
                 <div class="col-lg-4 col-xs-6">  
                     <div class="form-group">
-                        <?php echo $this->Form->input('chteorica', array('type' => 'number', 'label' => 'Carga Horaria Teórica', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('chteorica', array('type' => 'number', 'label' => 'Carga Horaria Teórica', 'class' => 'form-control', 'onkeypress'=>'return SomenteNumero(event)')); ?>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-xs-6">
                     <div class="form-group">
-                        <?php echo $this->Form->input('chpratica', array('type' => 'number', 'label' => 'Carga Horaria Pratica', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('chpratica', array('type' => 'number', 'label' => 'Carga Horaria Pratica', 'class' => 'form-control', 'onkeypress'=>'return SomenteNumero(event)')); ?>
                     </div>
                 </div>
 
                 <div class="col-lg-4">    
                     <div class="form-group">
-                        <?php echo $this->Form->input('cdtotal', array('type' => 'number', 'label' => 'Carga Horaria Total', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('cdtotal', array('type' => 'number', 'label' => 'Carga Horaria Total', 'class' => 'form-control', 'onkeypress'=>'return SomenteNumero(event)')); ?>
                     </div>
                 </div>
 
@@ -49,16 +59,3 @@
 <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
 <?php echo $this->Form->end(); ?>
 
-
-<div class="actions">
-    <h3><?php echo __('Actions'); ?></h3>
-    <ul>
-
-        <li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Discipline.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('Discipline.id'))); ?></li>
-        <li><?php echo $this->Html->link(__('List Disciplines'), array('action' => 'index')); ?></li>
-        <li><?php echo $this->Html->link(__('List Courses'), array('controller' => 'courses', 'action' => 'index')); ?> </li>
-        <li><?php echo $this->Html->link(__('New Course'), array('controller' => 'courses', 'action' => 'add')); ?> </li>
-        <li><?php echo $this->Html->link(__('List Discipline Groups'), array('controller' => 'discipline_groups', 'action' => 'index')); ?> </li>
-        <li><?php echo $this->Html->link(__('New Discipline Group'), array('controller' => 'discipline_groups', 'action' => 'add')); ?> </li>
-    </ul>
-</div>

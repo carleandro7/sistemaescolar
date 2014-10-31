@@ -1,11 +1,11 @@
-
-	<h2><?php echo __('Group Students'); ?></h2>
+<div class="groupstudents index">
+<h2><?php echo __('Group Students'); ?></h2>
 
         <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <?php echo $this->Html->link(__('Adicionar'), array('action' => 'add')); ?>
+                            <?php echo $this->Html->link(__('Adicionar'), array('action' => 'addstudents')); ?>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -14,9 +14,8 @@
                          
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('group_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('student_id'); ?></th>
+                        <th><?php echo $this->Paginator->sort('Student.nome','Estudante'); ?></th>
+			<th><?php echo $this->Paginator->sort('Group.nome', 'Turmas'); ?></th>
 			<th><?php echo $this->Paginator->sort('datacadastro'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -24,18 +23,15 @@
 	<tbody>
 	<?php foreach ($groupStudents as $groupStudent): ?>
 	<tr>
-		<td><?php echo h($groupStudent['GroupStudent']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($groupStudent['Group']['id'], array('controller' => 'groups', 'action' => 'view', $groupStudent['Group']['id'])); ?>
+                    <?php echo $this->Html->link($groupStudent['Student']['nome'], array('controller' => 'students', 'action' => 'view', $groupStudent['Student']['id'])); ?>	
 		</td>
 		<td>
-			<?php echo $this->Html->link($groupStudent['Student']['id'], array('controller' => 'students', 'action' => 'view', $groupStudent['Student']['id'])); ?>
+                    <?php echo $this->Html->link($groupStudent['Group']['nome'], array('controller' => 'groups', 'action' => 'view', $groupStudent['Group']['id'])); ?>
 		</td>
 		<td><?php echo h($groupStudent['GroupStudent']['datacadastro']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $groupStudent['GroupStudent']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $groupStudent['GroupStudent']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $groupStudent['GroupStudent']['id']), array(), __('Are you sure you want to delete # %s?', $groupStudent['GroupStudent']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $groupStudent['GroupStudent']['id']), array(), __('Deseja deletar Estudante # %s?', $groupStudent['Student']['nome'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -59,14 +55,4 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Group Student'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Students'), array('controller' => 'students', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Student'), array('controller' => 'students', 'action' => 'add')); ?> </li>
-	</ul>
 </div>

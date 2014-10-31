@@ -3,24 +3,20 @@
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('assunto'); ?></th>
-			<th><?php echo $this->Paginator->sort('discipline_group_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('assunto', 'Assunto'); ?></th>
+			<th><?php echo $this->Paginator->sort('dataaula', 'Data da aula'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
 	<?php foreach ($classnotes as $classnote): ?>
 	<tr>
-		<td><?php echo h($classnote['Classnote']['id']); ?>&nbsp;</td>
 		<td><?php echo h($classnote['Classnote']['assunto']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($classnote['DisciplineGroup']['id'], array('controller' => 'discipline_groups', 'action' => 'view', $classnote['DisciplineGroup']['id'])); ?>
-		</td>
+                <td><?php echo h($classnote['Classnote']['dataaula']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $classnote['Classnote']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $classnote['Classnote']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $classnote['Classnote']['id']), array(), __('Are you sure you want to delete # %s?', $classnote['Classnote']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $classnote['Classnote']['id']), array(), __('Deletar aula # %s?', $classnote['Classnote']['assunto'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

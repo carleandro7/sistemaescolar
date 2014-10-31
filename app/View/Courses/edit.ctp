@@ -59,7 +59,7 @@
 
                 <div class="col-lg-5"> 
                     <div class="form-group">
-                        <?php echo $this->Form->input('school_id', array('label' => 'Escola', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('school_id', array('label' => 'Escola', 'class' => 'form-control', 'disabled'=>'true')); ?>
                     </div>
                 </div>
 

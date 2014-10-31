@@ -133,7 +133,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <?php echo $this->Form->input('password', array('label' => 'Senha', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('password', array('label' => 'Senha', 'class' => 'form-control', 'maxlength'=>'12','size'=>'12')); ?>
 
                     </div>
                 </div>
@@ -147,17 +147,3 @@
 <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
 <?php echo $this->Form->end(); ?>
 
-   
-
-    
-    
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Teacher.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('Teacher.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Teachers'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Discipline Groups'), array('controller' => 'discipline_groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Discipline Group'), array('controller' => 'discipline_groups', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
