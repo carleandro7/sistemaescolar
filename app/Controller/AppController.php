@@ -31,4 +31,19 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    
+    public $components = array(
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array('controller' => 'Schools', 'action' => 'index'),
+            'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+            'authenticate' => array('Form' => array('fields' => array('username' => 'email')))
+        )
+    );
+
+    function beforeFilter() {
+        $this->Auth->fields = array('username' => 'email');
+    }
+    
+    
 }

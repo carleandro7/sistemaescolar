@@ -5,17 +5,16 @@
             </div>
                <ul class="nav navbar-top-links navbar-right">
                                 <!-- /.dropdown -->
+                               <?php echo $this->Session->read('Auth.User.email'); ?>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Ajuda</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><?php echo $this->Html->link(__('Logout'), array('controller' => 'Users', 'action' => 'logout', 'class'=>'fa fa-sign-out fa-fw')); ?>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

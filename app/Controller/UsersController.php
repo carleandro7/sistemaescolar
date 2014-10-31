@@ -14,6 +14,27 @@ class UsersController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+        
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->Auth->allow('add'); // Permitindo que os usuários se registrem
+        }
+
+        public function login() {
+          $this->layout='login_layout';
+          if ($this->request->is('post')) {
+              $this->Auth->logout();
+            if ($this->Auth->login()) {
+                $this->redirect($this->Auth->redirect());
+            } else {
+                $this->Session->setFlash(__('Email ou Senha incorreto!'));
+            }
+          }
+        }
+
+        public function logout() {
+            $this->redirect($this->Auth->logout());
+        }
 
 /**
  * index method

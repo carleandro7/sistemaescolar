@@ -37,8 +37,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 echo $this->Html->css('/plugins/morris');
                 echo $this->Html->css('font-awesome-4.1.0/css/font-awesome.min');
 		echo $this->fetch('meta');
-                
-		
 
 	?>
 </head>
