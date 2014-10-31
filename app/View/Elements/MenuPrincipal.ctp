@@ -61,10 +61,10 @@
                                     <?php echo $this->Html->link(__('Disciplinas'), array('controller' => 'DisciplineGroups', 'action' => 'index')); ?>
                                 </li>
                                 <li>
-                                    <?php echo $this->Html->link(__('Matricular Aluno'), array('controller' => 'GroupStudents', 'action' => 'index')); ?>
+                                    <?php echo $this->Html->link(__('Matricular Aluno em Turma'), array('controller' => 'GroupStudents', 'action' => 'index')); ?>
                                 </li>
                                 <li>
-                                    <?php echo $this->Html->link(__('Matricular Aluno em Disciplinas'), array('controller' => 'DisciplineStudents', 'action' => 'index')); ?>
+                                    <?php echo $this->Html->link(__('Matricular Aluno em Disciplina'), array('controller' => 'DisciplineStudents', 'action' => 'index')); ?>
                                 </li>
                              </ul>
                             <!-- /.nav-second-level -->
