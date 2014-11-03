@@ -39,6 +39,16 @@ class SchoolsController extends AppController {
 		$options = array('conditions' => array('School.' . $this->School->primaryKey => $id));
 		$this->set('school', $this->School->find('first', $options));
 	}
+        public function view_pdf($id = null) {
+            $this->School->id = $id;
+            if (!$this->School->exists()) {
+                throw new NotFoundException(__('Invalid post'));
+            }
+            // increase memory limit in PHP 
+            ini_set('memory_limit', '512M');
+            $this->set('school', $this->School->read(null, $id));
+            
+        }
 
 /**
  * add method

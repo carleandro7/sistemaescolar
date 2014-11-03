@@ -34,6 +34,7 @@
                                                             <?php echo $this->Html->link(__('View'), array('action' => 'view', $school['School']['id'])); ?>
                                                             <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $school['School']['id'])); ?>
                                                             <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $school['School']['id']), array(), __('Are you sure you want to delete # %s?', $school['School']['id'])); ?>
+                                                            <?php echo $this->Html->link(__('PDF'), array('action' => 'view_pdf', 'ext' => 'pdf', $school['School']['id']),  array('target' => '_blank'));?>
                                                     </td>
                                             </tr>
                                     <?php endforeach; ?>

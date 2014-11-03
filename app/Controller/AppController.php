@@ -33,6 +33,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
     
     public $components = array(
+        'RequestHandler',
         'Session',
         'Auth' => array(
             'loginRedirect' => array('controller' => 'Schools', 'action' => 'index'),
@@ -45,5 +46,11 @@ class AppController extends Controller {
         $this->Auth->fields = array('username' => 'email');
     }
     
-    
+    public function view($id){
+        $this->pdfConfig = array(
+          'orientation'  => 'lasdscape',
+          'download' => true,
+          'filename' => 'invoice-2005.pdf'
+        );
+    }
 }
