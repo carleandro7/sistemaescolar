@@ -22,6 +22,7 @@ class DisciplineStudentsController extends AppController {
  */
 	public function index() {
 		$this->DisciplineStudent->recursive = 0;
+                
 		$this->set('disciplineStudents', $this->Paginator->paginate());
       	}
 
@@ -107,4 +108,31 @@ class DisciplineStudentsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        
+        public function disciplines($id = null) {
+            if ($id == null) {
+			throw new NotFoundException(__('Invalid student'));
+		}
+               $this->DisciplineStudent->recursive = 0;
+               $this->Paginator->settings = array(
+                'conditions' => array('`Students`.`id` = ' => $id),
+                'order' => ' `DisciplineStudent`.`id` DESC', 
+                'limit' => 20
+                );
+                $disciplinas  = $this->Paginator->paginate('DisciplineStudent');
+                $this->set(compact('disciplinas'));
+	}
+        public function disciplinegroups($id = null, $idg = null){
+            if ($id == null || $idg == null) {
+			throw new NotFoundException(__('Invalid student'));
+            }
+            $this->DisciplineStudent->recursive = 0;
+               $this->Paginator->settings = array(
+                'conditions' => array('AND'=>array('`Students`.`id` = ' => $id, '`DisciplineGroups`.`group_id` = ' => $idg)),
+                'order' => ' `DisciplineStudent`.`id` DESC', 
+                'limit' => 20
+                );
+                $disciplinas  = $this->Paginator->paginate('DisciplineStudent');
+                $this->set(compact('disciplinas'));
+        }
 }

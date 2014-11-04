@@ -43,7 +43,7 @@
                                     <?php echo $this->Html->link(__('Disciplinas'), array('controller' => 'Disciplines', 'action' => 'index')); ?>
                                 </li>
                                 <li>
-                                    <?php echo $this->Html->link(__('Professor'), array('controller' => 'Teachers', 'action' => 'index')); ?>
+                                    <?php echo $this->Html->link(__('Professores'), array('controller' => 'Teachers', 'action' => 'index')); ?>
                                 </li>
                                 <li>
                                     <?php echo $this->Html->link(__('Alunos'), array('controller' => 'Students', 'action' => 'index')); ?>
@@ -60,13 +60,20 @@
                                 <li>
                                     <?php echo $this->Html->link(__('Disciplinas'), array('controller' => 'DisciplineGroups', 'action' => 'index')); ?>
                                 </li>
+                               
+                             </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                          <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Matricula<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
                                 <li>
-                                    <?php echo $this->Html->link(__('Matricular Aluno em Turma'), array('controller' => 'GroupStudents', 'action' => 'index')); ?>
+                                   <?php echo $this->Html->link(__('Matricular Aluno em Turma'), array('controller' => 'GroupStudents', 'action' => 'index')); ?>
                                 </li>
                                 <li>
                                     <?php echo $this->Html->link(__('Matricular Aluno em Disciplina'), array('controller' => 'DisciplineStudents', 'action' => 'index')); ?>
                                 </li>
-                             </ul>
+                            </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>

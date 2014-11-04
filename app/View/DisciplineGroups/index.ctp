@@ -36,6 +36,8 @@
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $disciplineGroup['DisciplineGroup']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $disciplineGroup['DisciplineGroup']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $disciplineGroup['DisciplineGroup']['id']), array(), __('Deseja deletar disciplina # %s?', $disciplineGroup['Discipline']['nome'])); ?>
+                        <?php echo $this->Html->link(__('Notas'), array('controller' => 'Bills', 'action' => 'index', $disciplineGroup['DisciplineGroup']['id'])); ?>
+                        <?php echo $this->Html->link(__('Frequencia'), array('controller' => 'Classnotes', 'action' => 'index', $disciplineGroup['DisciplineGroup']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

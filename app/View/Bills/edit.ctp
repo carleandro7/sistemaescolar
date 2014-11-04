@@ -22,25 +22,22 @@ function SomenteNumero(e){
 	<INPUT TYPE="hidden" NAME="data[Bill][discipline_group_id]" VALUE="<?php echo $this->request->data['Bill']['discipline_group_id'];?>">
     <?php 
         if (!empty($billStudents)): 
-             $num_rows =  sizeof($billStudents);
+             $i=0;
         ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('ALunos'); ?></th>		
 		<th <?php echo __('Notas'); ?></th>
+                <th <?php echo __('Notas'); ?></th>
 	</tr> 
-	<?php   for($i=0; $i<$num_rows; $i++){
-              $billstudent=$billStudents[$i];?>
+	<?php   foreach ($billStudents as $billStudent): ?>
 		<tr>    
-                     
-                        <td><?php echo $billstudent['Students']['nome']?></td>	
-                        <td><?php echo $this->Form->input('BillStudent.'.$i.'.nota', array('label'=>false, 'onkeypress'=>'return SomenteNumero(event)')); ?> </td>	
-                        <td><INPUT TYPE="hidden" NAME="data[BillStudent][<?php echo $i;?>][discipline_student_id]" VALUE="<?php echo $billstudent['DisciplineStudent']['id'];?>">
-                        <td><INPUT TYPE="hidden" NAME="data[BillStudent][<?php echo $i;?>][id]" VALUE="<?php echo $billstudent['BillStudent']['id'];?>">
-                         
-		
+                        <td><?php echo $billStudents[$i]['Students']['nome']?> </td>	
+                        <td><?php echo $this->Form->input('BillStudent.'.$i.'.nota', array('label'=>false, 'onkeypress'=>'return SomenteNumero(event)',  'VALUE'=>$billStudents[$i]['BillStudent']['nota'])); ?> </td>	
+                        <td><INPUT TYPE="hidden" NAME="data[BillStudent][<?php echo $i;?>][discipline_student_id]" VALUE="<?php echo $billStudent['DisciplineStudent']['id'];?>"></td>
+                        <td><INPUT TYPE="hidden" NAME="data[BillStudent][<?php echo $i;?>][id]" VALUE="<?php echo $billStudent['BillStudent']['id'];?>"></td>
 		</tr>
-	<?php }?>
+    <?php $i++; endforeach; ?>
 	</table>
         <?php endif; ?>
          

@@ -66,7 +66,7 @@ class GroupStudentsController extends AppController {
 			$this->GroupStudent->create();
 			if ($this->GroupStudent->save($this->request->data)) {
 				$this->Session->setFlash(__('The group student has been saved.'));
-				return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $id));
+				return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $this->request->data('GroupStudent.group_id')));
 			} else {
 				$this->Session->setFlash(__('The group student could not be saved. Please, try again.'));
 			}
@@ -131,5 +131,19 @@ class GroupStudentsController extends AppController {
                     return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $idgroup));
                 }
 	}
+        
+        public function groupsview($id = null){
+            if ($id == null) {
+			throw new NotFoundException(__('Invalid student'));
+		}
+               $this->GroupStudent->recursive = 0;
+               $this->Paginator->settings = array(
+                'conditions' => array('`GroupStudent`.`student_id` = ' => $id),
+                'order' => ' `GroupStudent`.`id` DESC', 
+                'limit' => 20
+                );
+                $groupStudents  = $this->Paginator->paginate('GroupStudent');
+                $this->set(compact('groupStudents'));
+        }
         
 }

@@ -62,6 +62,13 @@ class DisciplineStudent extends AppModel {
 			'conditions' => '',
 			'fields' => 'id,nome',
 			'order' => ''
+		),
+                'Groups' => array(
+			'className' => 'Groups',
+			'foreignKey' => '',
+			'conditions' => 'Groups.id = DisciplineGroups.group_id',
+			'fields' => 'id,nome',
+			'order' => ''
 		)
 	);
 }

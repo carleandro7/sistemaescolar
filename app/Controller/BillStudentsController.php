@@ -106,4 +106,30 @@ class BillStudentsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        
+        public function viewnotas($id = null) {
+		if ($id== null) {
+			throw new NotFoundException(__('Invalid bill student'));
+		}
+                $this->loadModel("Student");
+                $sql = "SELECT  `Student`.`nome` FROM `escolabd`.`discipline_students` AS `DisciplineStudent` "
+                        . "LEFT JOIN `escolabd`.`students` AS `Student` ON (`DisciplineStudent`.`students_id` = "
+                        . "`Student`.`id`) WHERE `DisciplineStudent`.`id` = ".$id;
+                $student = $this->Student->query($sql);
+                $this->loadModel("Discipline");
+                $sql = "SELECT  `Discipline`.`nome`, `Group`.`nome` FROM `escolabd`.`discipline_students` AS "
+                        . "`DisciplineStudent` LEFT JOIN `escolabd`.`discipline_groups` AS `DisciplineGroup` ON "
+                        . "(`DisciplineGroup`.`id` = `DisciplineStudent`.`discipline_groups_id`) "
+                        . "LEFT JOIN `escolabd`.`groups` AS `Group` ON (`DisciplineGroup`.`group_id` = `group`.`id`) "
+                        . "LEFT JOIN `escolabd`.`disciplines` AS `Discipline` ON (`Discipline`.`id` = "
+                        . "`DisciplineGroup`.`discipline_id`) WHERE `DisciplineStudent`.`id` = ".$id;
+                $discipline = $this->Discipline->query($sql); 
+                
+                $this->set(compact('student', 'discipline'));
+                
+		$options = array('conditions' => array('BillStudent.discipline_student_id' => $id), 'order' => ' `BillStudent`.`id` ASC', );
+		$this->set('billStudents', $this->BillStudent->find('all', $options));
+                $options2 = array('conditions' => array('BillStudent.discipline_student_id' => $id), "fields" => array(" AVG(`BillStudent`.`nota`)"));
+                $this->set('mediapoderada', $this->BillStudent->find('all', $options2));
+	}
 }
