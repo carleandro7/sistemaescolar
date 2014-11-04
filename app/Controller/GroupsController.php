@@ -40,7 +40,12 @@ class GroupsController extends AppController {
 		$this->set('group', $this->Group->find('first', $options));
                		
                 $this->loadModel('DisciplineGroup');   
-                $sql='SELECT `DisciplineGroup`.`id`, `DisciplineGroup`.`teacher_id`, `DisciplineGroup`.`discipline_id`, `DisciplineGroup`.`group_id`, `Teacher`.`id`, `Teacher`.`nome`, `Discipline`.`id`, `Discipline`.`nome` FROM `escolabd`.`discipline_groups` AS `DisciplineGroup` LEFT JOIN `escolabd`.`teachers` AS `Teacher` ON (`DisciplineGroup`.`teacher_id` = `Teacher`.`id`) LEFT JOIN `escolabd`.`disciplines` AS `Discipline` ON (`DisciplineGroup`.`discipline_id` = `Discipline`.`id`) where`DisciplineGroup`.`group_id` ='. $id;
+                $sql='SELECT `DisciplineGroup`.`id`, `DisciplineGroup`.`teacher_id`, `DisciplineGroup`.`discipline_id`, '
+                        . '`DisciplineGroup`.`group_id`, `Teacher`.`id`, `Teacher`.`nome`, `Discipline`.`id`, '
+                        . '`Discipline`.`nome` FROM `escolabd`.`discipline_groups` AS `DisciplineGroup` '
+                        . 'LEFT JOIN `escolabd`.`teachers` AS `Teacher` ON (`DisciplineGroup`.`teacher_id` = `Teacher`.`id`) '
+                        . 'LEFT JOIN `escolabd`.`disciplines` AS `Discipline` ON (`DisciplineGroup`.`discipline_id` = '
+                        . '`Discipline`.`id`) where`DisciplineGroup`.`group_id` ='. $id.' ORDER BY `Discipline`.`nome` ASC';
                 
                 $disciplineGroups= $this->DisciplineGroup->query($sql);
                 $this->set(compact('disciplineGroups'));

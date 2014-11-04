@@ -1,3 +1,4 @@
+
 <h2><?php echo __('Aluno '.$student[0]['Student']['nome']); ?></h2>                    
 <h2><?php echo __('Turma '.$discipline[0]['Group']['nome']); ?></h2>                    
 <div class="col-lg-4"> 
@@ -11,6 +12,11 @@
                 <dt><?php echo __('Media'); ?></dt>
 		<dd>
 			<?php echo h($mediapoderada[0][0]['AVG(`BillStudent`.`nota`)']); ?>
+			&nbsp;
+                </dd>
+                <dt><?php echo __('Total de faltas'); ?></dt>
+		<dd>
+			<?php echo h($frequency[0][0]['SUM(`Frequency`.`falta`)']); ?>
 			&nbsp;
                 </dd>
 	</dl>
