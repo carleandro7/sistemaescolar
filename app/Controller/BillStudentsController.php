@@ -129,7 +129,13 @@ class BillStudentsController extends AppController {
                         . "`escolabd`.`discipline_students` AS `DisciplineStudent` ON (`Frequency`.`discipline_student_id` "
                         . "= `DisciplineStudent`.`id`) WHERE `Frequency`.`discipline_student_id` = ".$id;
                 $frequency = $this->Frequency->query($sql); 
-                $this->set(compact('student', 'discipline', 'frequency'));
+                $this->loadModel('Classnote');
+                $sql = "SELECT SUM(`Classnote`.`qtdaula`) FROM `classnotes` as `Classnote`  LEFT JOIN `discipline_groups` AS "
+                        . "`DisciplineGroup` ON (`Classnote`.`discipline_group_id` = `DisciplineGroup`.`id`) "
+                        . "WHERE `Classnote`.`discipline_group_id` = (Select `DisciplineStudent`.`discipline_groups_id`from "
+                        . "`discipline_students` as `DisciplineStudent` where `DisciplineStudent`.`id` =".$id.")";
+                $classnote = $this->Classnote->query($sql); 
+                $this->set(compact('student', 'discipline', 'frequency', 'classnote'));
                 
 		$options = array('conditions' => array('BillStudent.discipline_student_id' => $id), 'order' => ' `BillStudent`.`id` ASC', );
 		$this->set('billStudents', $this->BillStudent->find('all', $options));

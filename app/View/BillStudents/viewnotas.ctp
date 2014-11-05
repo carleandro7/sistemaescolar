@@ -16,7 +16,28 @@
                 </dd>
                 <dt><?php echo __('Total de faltas'); ?></dt>
 		<dd>
-			<?php echo h($frequency[0][0]['SUM(`Frequency`.`falta`)']); ?>
+			<?php if($frequency[0][0]['SUM(`Frequency`.`falta`)'] != null){
+                                echo h($frequency[0][0]['SUM(`Frequency`.`falta`)']);
+                              }else{
+                                  echo h("0");
+                              }
+                          ?>
+			&nbsp;
+                </dd>
+                <dt><?php echo __('Porcentagem de falta %'); ?></dt>
+		<dd>
+                    <?php if($classnote[0][0]['SUM(`Classnote`.`qtdaula`)'] != null) {
+                            if($frequency[0][0]['SUM(`Frequency`.`falta`)'] != null){
+                                $resultado = ($frequency[0][0]['SUM(`Frequency`.`falta`)']*100)/$classnote[0][0]['SUM(`Classnote`.`qtdaula`)'];
+                                echo h($resultado);
+                            }else{
+                                echo h("0");
+                            }
+                        
+                    } else {
+                        echo h("0");
+                    }
+                    ?>
 			&nbsp;
                 </dd>
 	</dl>
