@@ -15,6 +15,7 @@ function SomenteNumero(e){
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('assunto');		
+                echo $this->Form->input('qtdaula');
                 echo $this->Form->input('dataaula');
       	?>
                 <INPUT TYPE="hidden" NAME="data[Classnote][discipline_group_id]" VALUE="<?php echo $this->request->data['Classnote']['discipline_group_id'];?>">

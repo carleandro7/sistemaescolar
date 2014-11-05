@@ -13,8 +13,9 @@ function SomenteNumero(e){
 	<fieldset>
 		<legend><?php echo __('Add Classnote'); ?></legend>
 	<?php
-		echo $this->Form->input('assunto');
-		echo $this->Form->input('dataaula');
+                echo $this->Form->input('assunto');		
+                echo $this->Form->input('qtdaula');
+                echo $this->Form->input('dataaula');
 	?>
                 <INPUT TYPE="hidden" NAME="data[Classnote][discipline_group_id]" VALUE="<?php echo key($disciplineGroups);?>">
         <?php 
