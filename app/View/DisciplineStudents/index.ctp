@@ -1,5 +1,6 @@
 <div class="disciplineStudents index">
 	<h2><?php echo __('Discipline Students'); ?></h2>
+        <?php echo $this->Html->link(__('Adicionar'), array('action' => 'add')); ?>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

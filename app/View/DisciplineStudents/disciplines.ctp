@@ -1,4 +1,10 @@
-<h2><?php echo __('Aluno '.$disciplinas[0]['Students']['nome']); ?></h2>
+<h2><?php 
+    if ($disciplinas !=null){
+        echo ('Aluno: '.$disciplinas[0]['Students']['nome'] ); 
+    }else{
+        echo ('Aluno não possui nenhuma disciplina cadastrado'); 
+    }
+ ?></h2>
 
 <div class="row">
     <div class="col-lg-12">

@@ -1,6 +1,6 @@
 <h2><?php echo __('Aluno: '.$disciplinas[0]['Students']['nome']); ?></h2>
 <h2><?php echo __('Turma: '.$disciplinas[0]['Groups']['nome']); ?></h2>
-          
+<?php echo $this->Html->link(__('Historico'), array('controller' => 'BillStudents','action' => 'view_turma_pdf','ext' => 'pdf', $disciplinas[0]['Students']['id'],$disciplinas[0]['Groups']['id'])); ?>          
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">

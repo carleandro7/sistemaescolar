@@ -1,6 +1,7 @@
 
 <h2><?php echo __('Aluno '.$student[0]['Student']['nome']); ?></h2>                    
-<h2><?php echo __('Turma '.$discipline[0]['Group']['nome']); ?></h2>                    
+<h2><?php echo __('Turma '.$discipline[0]['Group']['nome']); ?></h2> 
+<?php  echo $this->Html->link(__('PDF'), array('action' => 'view_disciplina_pdf', 'ext' => 'pdf', $discipline[0]['DisciplineStudent']['id']),  array('target' => '_blank'));?>
 <div class="col-lg-4"> 
     <div class="well well-lg">        
         <dl>

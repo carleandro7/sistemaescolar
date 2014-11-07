@@ -1,5 +1,6 @@
 <div class="classnotes index">
-    <?php echo $this->Html->link(__('Turma'), array('controller'=>'groups', 'action' => 'view', $classnotes[0]['DisciplineGroup']['group_id'])); ?>
+  <?php if($classnotes != null){
+  echo $this->Html->link(__('Turma'), array('controller'=>'groups', 'action' => 'view', $classnotes[0]['DisciplineGroup']['group_id'])); }?>
 	<h2><?php echo __('Classnotes'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>

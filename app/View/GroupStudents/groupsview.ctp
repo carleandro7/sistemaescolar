@@ -1,5 +1,11 @@
 <div class="groupstudents index">
-<h2><?php echo __('Aluno: '.$groupStudents[0]['Student']['nome'] ); ?></h2>
+<h2><?php 
+    if ($groupStudents !=null){
+        echo ('Aluno: '.$groupStudents[0]['Student']['nome'] ); 
+    }else{
+        echo ('Aluno não possui nenhuma turma cadastrado'); 
+    }
+ ?></h2>
 
         <div class="row">
                 <div class="col-lg-12">

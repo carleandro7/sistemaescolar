@@ -26,7 +26,7 @@
 </div>
 
     
-<INPUT TYPE="hidden" NAME="data[GroupStudent][group_id]" VALUE="<?php echo key($groups);?>">
+
 
 <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
 <?php echo $this->Form->end(); ?>

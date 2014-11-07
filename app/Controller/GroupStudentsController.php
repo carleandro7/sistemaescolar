@@ -51,7 +51,7 @@ class GroupStudentsController extends AppController {
 			$this->GroupStudent->create();
 			if ($this->GroupStudent->save($this->request->data)) {
 				$this->Session->setFlash(__('The group student has been saved.'));
-				return $this->redirect(array('controller' => 'groups', 'action' => 'index'));
+				return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $this->request->data('GroupStudent.group_id')));
 			} else {
 				$this->Session->setFlash(__('The group student could not be saved. Please, try again.'));
 			}
