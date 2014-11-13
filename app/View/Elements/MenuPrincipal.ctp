@@ -27,46 +27,42 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>                          
-                            <a class="active" href="<?php echo $this->Html->url(array('controller' => 'Schools', 'action' => 'index')); ?>"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+                            <a class="active" href="<?php echo $this->Html->url(array('controller' => 'Schools', 'action' => 'index')); ?>"><i class="fa fa-dashboard fa-fw"></i> Institutos</a>
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Escola<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <?php echo $this->Html->link(__('Lista'), array('controller' => 'Schools', 'action' => 'index')); ?>
-                                </li>
-                                <li>
-                                   <?php echo $this->Html->link(__('Cursos'), array('controller' => 'Courses', 'action' => 'index')); ?>
-                                </li>
-                                <li>
-                                    <?php echo $this->Html->link(__('Disciplinas'), array('controller' => 'Disciplines', 'action' => 'index')); ?>
-                                </li>
-                                <li>
-                                    <?php echo $this->Html->link(__('Professores'), array('controller' => 'Teachers', 'action' => 'index')); ?>
-                                </li>
-                                <li>
-                                    <?php echo $this->Html->link(__('Alunos'), array('controller' => 'Students', 'action' => 'index')); ?>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Turma<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <?php echo $this->Html->link(__('Lista'), array('controller' => 'Groups', 'action' => 'index')); ?>
                                 </li>
                                 <li>
-                                    <?php echo $this->Html->link(__('Disciplinas'), array('controller' => 'DisciplineGroups', 'action' => 'index')); ?>
+                                   <?php echo $this->Html->link(__('Disciplinas'), array('controller' => 'DisciplineGroups', 'action' => 'index')); ?>
                                 </li>
-                               
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                         <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Cursos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <?php echo $this->Html->link(__('Lista'), array('controller' => 'Courses', 'action' => 'index')); ?>
+                                </li>
+                                <li>
+                                    <?php echo $this->Html->link(__('Disciplinas'), array('controller' => 'Disciplines', 'action' => 'index')); ?>
+                                </li>
+                                 <li>
+                                    <?php echo $this->Html->link(__('Professores'), array('controller' => 'Teachers', 'action' => 'index')); ?>
+                                </li>
                              </ul>
                             <!-- /.nav-second-level -->
                         </li>
                           <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Matricula<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Alunos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                 <li>
+                                    <?php echo $this->Html->link(__('Lista'), array('controller' => 'Students', 'action' => 'index')); ?>
+                                </li>
                                 <li>
                                    <?php echo $this->Html->link(__('Matricular Aluno em Turma'), array('controller' => 'GroupStudents', 'action' => 'index')); ?>
                                 </li>

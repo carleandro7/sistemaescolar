@@ -29,7 +29,7 @@
 
                 <div class="col-lg-4">    
                     <div class="form-group">
-                        <?php echo $this->Form->input('datanascimento', array('type'=>'text','label' => 'Data de Nascimento', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('datanascimento', array('id'=>'data','type'=>'text','label' => 'Data de Nascimento', 'class' => 'form-control')); ?>
                     </div>
                 </div>
                 
@@ -42,13 +42,13 @@
                 
                  <div class="col-lg-4">    
                     <div class="form-group">
-                        <?php echo $this->Form->input('cpf', array('mask' => '999.999.99', 'label' => 'CPF', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('cpf', array('id'=>'cpf', 'label' => 'CPF', 'class' => 'form-control')); ?>
                     </div>
                 </div>
                 
                  <div class="col-lg-4">    
                     <div class="form-group">
-                        <?php echo $this->Form->input('rg', array('mask' => '999.999.99', 'label' => 'RG', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('rg', array('label' => 'RG', 'class' => 'form-control')); ?>
                     </div>
                 </div>
                 
@@ -111,13 +111,13 @@
 
                 <div class="col-lg-2 col-xs-4"> 
                     <div class="form-group">
-                        <?php echo $this->Form->input('numero', array('label' => 'Número', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('numero', array('label' => 'Número', 'class' => 'form-control',  'onkeypress'=>'return SomenteNumero(event)')); ?>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-xs-6">    
                     <div class="form-group">
-                        <?php echo $this->Form->input('cep', array('label' => 'CEP', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('cep', array('id'=>'cep','label' => 'CEP', 'class' => 'form-control')); ?>
                     </div>
                 </div>
 
@@ -160,7 +160,7 @@
             <div class="panel-body">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <?php echo $this->Form->input('fone', array('label' => 'Telefone', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('fone', array('id'=>'telefone', 'label' => 'Telefone', 'class' => 'form-control')); ?>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -228,3 +228,21 @@
 <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
 <?php echo $this->Form->end(); ?>
 
+<script type="text/javascript">
+    jQuery(document).ready(function($){        
+        $("#cpf").mask("999.999.999-99");
+        $("#telefone").mask("(99) 9999-9999");
+        $("#cep").mask("99999-999");
+        $("#data").mask("99-99-9999");
+    });
+</script>
+<script language='JavaScript'>
+function SomenteNumero(e){
+    var tecla=(window.event)?event.keyCode:e.which;   
+    if((tecla>47 && tecla<58)) return true;
+    else{
+    	if (tecla===8 || tecla===0) return true;
+	else  return false;
+    }
+}
+</script>

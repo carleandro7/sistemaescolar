@@ -31,7 +31,7 @@ function SomenteNumero(e){
 	<?php   for($i=0; $i<$num_rows; $i++){
               $billstudent=$billStudents[$i];?>
 		<tr>    
-                        <td><?php echo $billstudent['Students']['nome'].' '.$i;?></td>	
+                        <td><?php echo $billstudent['Students']['nome'];?></td>	
                         <td><?php echo $this->Form->input('BillStudent.'.$i.'.nota', array('label'=>false, 'onkeypress'=>'return SomenteNumero(event)')); ?></td>
                         <td><INPUT TYPE="hidden" NAME="data[BillStudent][<?php echo $i;?>][discipline_student_id]" VALUE="<?php echo $billstudent['DisciplineStudent']['id'];?>">
                          
