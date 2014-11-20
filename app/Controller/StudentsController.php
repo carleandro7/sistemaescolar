@@ -86,6 +86,24 @@ class StudentsController extends AppController {
 		 $schools = $this->Student->School->find('list', array('fields'=>array('nome')));
 		$this->set(compact('schools'));
 	}
+        
+        public function altsenha($id = null) {
+		if (!$this->Student->exists($id)) {
+			throw new NotFoundException(__('Invalid student'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Student->save($this->request->data)) {
+				$this->Session->setFlash(__('The student has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The student could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('Student.' . $this->Student->primaryKey => $id));
+			$this->request->data = $this->Student->find('first', $options);
+		}
+	}
+
 
 /**
  * delete method

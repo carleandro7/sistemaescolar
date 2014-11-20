@@ -1,43 +1,35 @@
-<div class="disciplineStudents view">
-<h2><?php echo __('Discipline Student'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($disciplineStudent['DisciplineStudent']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Status'); ?></dt>
-		<dd>
-			<?php echo h($disciplineStudent['DisciplineStudent']['status']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Mediafinal'); ?></dt>
-		<dd>
-			<?php echo h($disciplineStudent['DisciplineStudent']['mediafinal']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Discipline Groups'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($disciplineStudent['DisciplineGroups']['id'], array('controller' => 'discipline_groups', 'action' => 'view', $disciplineStudent['DisciplineGroups']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Students'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($disciplineStudent['Students']['id'], array('controller' => 'students', 'action' => 'view', $disciplineStudent['Students']['id'])); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Discipline Student'), array('action' => 'edit', $disciplineStudent['DisciplineStudent']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Discipline Student'), array('action' => 'delete', $disciplineStudent['DisciplineStudent']['id']), array(), __('Are you sure you want to delete # %s?', $disciplineStudent['DisciplineStudent']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Discipline Students'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Discipline Student'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Discipline Groups'), array('controller' => 'discipline_groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Discipline Groups'), array('controller' => 'discipline_groups', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Students'), array('controller' => 'students', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Students'), array('controller' => 'students', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+
+<h2><?php echo __('Matricular Aluno em Disciplina'); ?></h2>
+
+<?php echo $this->Form->create('DisciplineStudent'); ?>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Informações para matricula
+            </div>
+
+            <div class="panel-body">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                            <?php echo $this->Form->input('data[Student][nome]',array('label' => 'Nome do Aluno', 'class' => 'form-control', 'readonly' => true, 'value' => $disciplineStudent['Students']['nome'])); ?>
+                    </div>
+                </div>
+                <div class="col-lg-4">    
+                    <div class="form-group">
+                            <?php echo $this->Form->input('data[DisciplineStudent][discipline_groups_id]',array('label' => 'Nome do Disciplina', 'class' => 'form-control', 'readonly' => true, 'value' => $disciplineStudent['DisciplineStudent']['nomeDisciplina'])); ?>
+                    </div>
+                </div>
+                <div class="col-lg-4">    
+                    <div class="form-group">
+                            <?php echo $this->Form->input('status',array('label' => 'Status', 'class' => 'form-control', 'readonly' => true, 'value' => $disciplineStudent['DisciplineStudent']['status'])); ?>
+                    </div>
+                </div>
+                
+            </div>          
+        </div>
+    </div>
+ </div>
+
+<?php echo $this->Form->end(); ?>

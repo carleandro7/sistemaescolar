@@ -1,8 +1,4 @@
-<script type="text/javascript">
-    jQuery(document).ready(function($){        
-          $("#cpf").mask("999.999.999-99");
-    });
-</script>
+
 <h2><?php echo __('Adicionar Estudante'); ?></h2>
 <?php echo $this->Form->create('Student'); ?>
 
@@ -29,7 +25,10 @@
 
                 <div class="col-lg-4">    
                     <div class="form-group">
-                        <?php echo $this->Form->input('datanascimento', array('id'=>'data','type'=>'text','label' => 'Data de Nascimento', 'class' => 'form-control')); ?>
+                        <dt><?php echo __('Data de Nascimento'); ?></dt>
+                        <dd>
+                            <?php echo $this->Form->input('datanascimento', array('type'=>'date','label' => false, 'minYear' => 1950,'dateFormat' => 'DMY')); ?>     
+                        </dd>
                     </div>
                 </div>
                 
@@ -129,7 +128,7 @@
 
                 <div class="col-lg-4"> 
                     <div class="form-group">
-                        <?php echo $this->Form->input('', array('label' => 'Zona**', 'class' => 'form-control')); ?>
+                        <?php echo $this->Form->input('zona', array('label' => 'Zona**', 'class' => 'form-control')); ?>
                     </div>
                 </div>
 
@@ -228,21 +227,3 @@
 <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
 <?php echo $this->Form->end(); ?>
 
-<script type="text/javascript">
-    jQuery(document).ready(function($){        
-        $("#cpf").mask("999.999.999-99");
-        $("#telefone").mask("(99) 9999-9999");
-        $("#cep").mask("99999-999");
-        $("#data").mask("99-99-9999");
-    });
-</script>
-<script language='JavaScript'>
-function SomenteNumero(e){
-    var tecla=(window.event)?event.keyCode:e.which;   
-    if((tecla>47 && tecla<58)) return true;
-    else{
-    	if (tecla===8 || tecla===0) return true;
-	else  return false;
-    }
-}
-</script>

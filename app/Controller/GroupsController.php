@@ -42,9 +42,9 @@ class GroupsController extends AppController {
                 $this->loadModel('DisciplineGroup');   
                 $sql='SELECT `DisciplineGroup`.`id`, `DisciplineGroup`.`teacher_id`, `DisciplineGroup`.`discipline_id`, '
                         . '`DisciplineGroup`.`group_id`, `Teacher`.`id`, `Teacher`.`nome`, `Discipline`.`id`, '
-                        . '`Discipline`.`nome` FROM `escolabd`.`discipline_groups` AS `DisciplineGroup` '
-                        . 'LEFT JOIN `escolabd`.`teachers` AS `Teacher` ON (`DisciplineGroup`.`teacher_id` = `Teacher`.`id`) '
-                        . 'LEFT JOIN `escolabd`.`disciplines` AS `Discipline` ON (`DisciplineGroup`.`discipline_id` = '
+                        . '`Discipline`.`nome` FROM `discipline_groups` AS `DisciplineGroup` '
+                        . 'LEFT JOIN `teachers` AS `Teacher` ON (`DisciplineGroup`.`teacher_id` = `Teacher`.`id`) '
+                        . 'LEFT JOIN `disciplines` AS `Discipline` ON (`DisciplineGroup`.`discipline_id` = '
                         . '`Discipline`.`id`) where`DisciplineGroup`.`group_id` ='. $id.' ORDER BY `Discipline`.`nome` ASC';
                 
                 $disciplineGroups= $this->DisciplineGroup->query($sql);
@@ -59,8 +59,8 @@ class GroupsController extends AppController {
 		$this->set('group', $this->Group->find('first', $options));
                	$this->loadModel('GroupStudent');
                 $sqlGroupStudent='SELECT `GroupStudent`.`id`, `GroupStudent`.`group_id`, `GroupStudent`.`student_id`, '
-                        . '`Student`.`id`, `Student`.`nome` FROM `escolabd`.`group_students` AS `GroupStudent` LEFT JOIN '
-                        . '`escolabd`.`students` AS `Student` ON (`GroupStudent`.`student_id` = `Student`.`id`) '
+                        . '`Student`.`id`, `Student`.`nome` FROM `group_students` AS `GroupStudent` LEFT JOIN '
+                        . '`students` AS `Student` ON (`GroupStudent`.`student_id` = `Student`.`id`) '
                         . 'WHERE `GroupStudent`.`group_id` = '.$id.' ORDER BY `Student`.`nome` ASC';
                 $groupStudents=$this->GroupStudent->query($sqlGroupStudent);
                 $this->set(compact('groupStudents'));

@@ -1,45 +1,79 @@
-<script language='JavaScript'>
-function SomenteNumero(e){
-    var tecla=(window.event)?event.keyCode:e.which;   
-    if((tecla>47 && tecla<58)) return true;
-    else{
-    	if (tecla===8 || tecla===0) return true;
-	else  return false;
-    }
-}
-</script>
-<div class="classnotes form">
-<?php echo $this->Form->create('Classnote'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Classnote'); ?></legend>
-	<?php
-                echo $this->Form->input('assunto');		
-                echo $this->Form->input('qtdaula');
-                echo $this->Form->input('dataaula');
-	?>
-                <INPUT TYPE="hidden" NAME="data[Classnote][discipline_group_id]" VALUE="<?php echo key($disciplineGroups);?>">
-        <?php 
-                if (!empty($frequencys)): 
-             $num_rows =  sizeof($frequencys);
-        ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('ALunos'); ?></th>		
-		<th <?php echo __('Frequencia'); ?></th>
-	</tr> 
-	<?php   for($i=0; $i<$num_rows; $i++){
-              $frequency=$frequencys[$i];?>
-		<tr>    
-                        <td><?php echo $frequency['Students']['nome'];?></td>	
-                        <td><?php echo $this->Form->input('Frequency.'.$i.'.falta', array('label'=>false, 'onkeypress'=>'return SomenteNumero(event)')); ?> </td>	
-                        <td><INPUT TYPE="hidden" NAME="data[Frequency][<?php echo $i;?>][discipline_student_id]" VALUE="<?php echo $frequency['DisciplineStudent']['id'];?>">
-                         
-		
-		</tr>
-	<?php }?>
-	</table>
-        <?php endif; ?>
-         
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+
+<h2><?php echo __('Adicionar Aula'); ?></h2>
+
+<?php
+echo $this->Form->create('Classnote');
+?>
+
+<div class="row">
+    <fieldset>
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Informações Gerais
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <dt><?php echo __('Data da aula'); ?></dt>
+                            <dd>
+                                <?php echo $this->Form->input('dataaula', array('label' => false)); ?>
+                                &nbsp;
+                            </dd>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">  
+                        <div class="form-group">
+                            <?php echo $this->Form->input('qtdaula', array('label' => 'Quantidade de aula', 'class' => 'form-control','onkeypress' => 'return SomenteNumero(event)')); ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">  
+                        <div class="form-group">
+                            <?php echo $this->Form->input('assunto', array('type' => 'textarea', 'label' => 'Assunto', 'class' => 'form-control')); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <INPUT TYPE="hidden" NAME="data[Classnote][discipline_group_id]" VALUE="<?php echo key($disciplineGroups);?>">
+
+        <div class="col-lg-12"> 
+
+            <div class="panel panel-default">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <?php echo __('Lista de Alunos'); ?>    
+                    </div>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <?php
+                            if (!empty($frequencys)):
+                                $num_rows = sizeof($frequencys);
+                                ?>
+                                <tr>
+                                    <th><?php echo __('Alunos'); ?></th>		
+                                    <th><?php echo __('Frequência'); ?></th>		
+                                </tr> 
+                                <?php for ($i = 0; $i < $num_rows; $i++) {
+                                    $frequency = $frequencys[$i];
+                                    ?>
+                                    <tr>    
+                                        <td><?php echo $frequency['Students']['nome'] ?></td>	
+                                        <td><?php echo $this->Form->input('Frequency.' . $i . '.falta', array('label' => false, 'onkeypress' => 'return SomenteNumero(event)')); ?> </td>	
+                                        <INPUT TYPE="hidden" NAME="data[Frequency][<?php echo $i;?>][discipline_student_id]" VALUE="<?php echo $frequency['DisciplineStudent']['id'];?>">
+                                    </tr>
+                                <?php } ?>
+                            <?php endif; ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
+<?php echo $this->Form->end(); ?>
 </div>
+

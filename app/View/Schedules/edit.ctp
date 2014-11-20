@@ -1,24 +1,45 @@
-<div class="schedules form">
-<?php echo $this->Form->create('Schedule'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Schedule'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('inicio');
-		echo $this->Form->input('fim');
-		echo $this->Form->input('dia');
-        ?>
-                
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<h2><?php echo __('Editar Horário'); ?></h2>
+<?php echo $this->Form->create('Schedule'); 
+  echo $this->Form->input('id');
+?>
+<fieldset>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Informações Gerais
+            </div>
+            
+            <div class="panel-body">
+                <div class="col-lg-4">    
+                    <div class="form-group">
+                        <?php echo $this->Form->input('dia', array('label' => 'Dia da Semana', 'class' => 'form-control', 'options' => array('Domingo'=>'Domingo','Segunda'=>'Segunda','Terça'=>'Terça','Quarta'=>'Quarta','Quinta'=>'Quinta','Sexta'=>'Sexta', 'Sábado'=>'Sábado'))); ?>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                                  <dt><?php echo __('Inicio da Aula'); ?></dt>
+                                  <dd>
+                                      <?php echo $this->Form->input('inicio', array('label' => false)); ?>
+                                      &nbsp;
+                                  </dd>
+                    </div>
+                </div>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Schedule.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('Schedule.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Schedules'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Discipline Groups'), array('controller' => 'discipline_groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Discipline Groups'), array('controller' => 'discipline_groups', 'action' => 'add')); ?> </li>
-	</ul>
+                <div class="col-lg-4">  
+                    <div class="form-group">
+                        <dt><?php echo __('Fim da Aula'); ?></dt>
+                                  <dd>
+                        <?php echo $this->Form->input('fim', array('label' => false)); ?>
+                                      &nbsp;
+                                  </dd>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+</fieldset>
+<button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
+<?php echo $this->Form->end(); ?>
+

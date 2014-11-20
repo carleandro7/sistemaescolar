@@ -58,9 +58,13 @@ function SomenteNumero(e){
                     </div>
                 </div>
                 
-                <div class="col-lg-12">    
+                <div class="col-lg-4">    
                     <div class="form-group">
-                        <b><?php echo 'Curso: '.$dadosGroup['Course']['nome']; ?></b>
+                        <dt><?php echo __('Curso'); ?></dt>
+                        <dd>
+			   <b><?php echo $dadosGroup['Course']['nome']; ?></b>
+			&nbsp;
+                        </dd>
                     </div>
                 </div>
               

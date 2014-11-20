@@ -47,6 +47,7 @@
                                     <td class="actions">
                                         <?php echo $this->Html->link(__('View'), array('action' => 'view', $student['Student']['id'])); ?>
                                         <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $student['Student']['id'])); ?>
+                                        <?php echo $this->Html->link(__('Senha'), array('action' => 'altsenha', $student['Student']['id'])); ?>
                                         <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $student['Student']['id']), array(), __('VocÃª deseja realmente excluir %s?', $student['Student']['nome'])); ?>
                                     </td>
                                 </tr>

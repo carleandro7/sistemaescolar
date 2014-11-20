@@ -7,7 +7,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <?php echo 'Lista de Usuários'; ?>
+                <?php echo $this->Html->link(__('Adicionar'), array('action' => 'add')); ?>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -32,7 +32,9 @@
                                         <?php echo $this->Html->link($user['School']['nome'], array('controller' => 'schools', 'action' => 'view', $user['School']['id'])); ?>
                                     </td>
                                     <td class="actions">
-                                        <?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
+                                        <?php echo $this->Html->link(__('Senha'), array('action' => 'altsenha', $user['User']['id'])); ?>
+                                        <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
+                                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array(), __('Deseja excluir usuário # %s?', $user['User']['nome'])); ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -1,109 +1,81 @@
 <h2><?php echo __('Professor'); ?></h2>
-    <div class="col-lg-4">
-<div class="well well">
+<div class="teachers form">
+    <?php echo $this->Form->create('Teacher'); ?>
 
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Nome'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['nome']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Imagem'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['imagem']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Fone'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['fone']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Titulacao'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['titulacao']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Area'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['area']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Cep'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['cep']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Logradouro'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['logradouro']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Numero'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['numero']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Bairro'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['bairro']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Cidade'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['cidade']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Estado'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['estado']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Email'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['email']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Username'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['username']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($teacher['Teacher']['password']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Informações Pessoais
+                </div>
 
-    <div class="related">
-            <h3><?php echo __('Related Discipline Groups'); ?></h3>
-            <?php if (!empty($teacher['DisciplineGroup'])): ?>
-            <table cellpadding = "0" cellspacing = "0">
-            <tr>
-                    <th><?php echo __('Disciplina'); ?></th>
-                    <th><?php echo __('Tumra'); ?></th>
-                    <th><?php echo __('Ano'); ?></th>
-                    <th class="actions"><?php echo __('Actions'); ?></th>
-            </tr>
-            <?php foreach ($disciplineGroups as $disciplineGroup): ?>
-                    <tr>
-                            <td><?php echo $disciplineGroup['Discipline']['nome']; ?></td>
-                            <td><?php echo $disciplineGroup['Group']['nome']; ?></td>
-                            <td><?php echo $disciplineGroup['Group']['ano']; ?></td>
-                            <td class="actions">
-                                    <?php echo $this->Html->link(__('View'), array('controller' => 'discipline_groups', 'action' => 'view', $disciplineGroup['DisciplineGroup']['id'])); ?>
-                                    <?php echo $this->Html->link(__('Edit'), array('controller' => 'discipline_groups', 'action' => 'edit', $disciplineGroup['DisciplineGroup']['id'])); ?>
-                            </td>
-                    </tr>
-            <?php endforeach; ?>
-            </table>
-    <?php endif; ?>
+                <div class="panel-body">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <?php echo $this->Form->input('nome', array('label' => 'Nome do Professor', 'class' => 'form-control', 'readonly' => true, 'value' => $teacher['Teacher']['nome'])); ?>
+                        </div>
+                    </div>
 
-     </div>
-</div>
+                    <div class="col-lg-4">    
+                        <div class="form-group">
+                            <?php echo $this->Form->input('titulacao', array('label' => 'Titulação', 'class' => 'form-control', 'options' => array('Licenciatura' => 'Licenciatura', 'Bacharel' => 'Bacharel', 'Pós-Graduação' => 'Pós-Graduação', 'Mestrado' => 'Mestrado', 'Doutorado', 'Doutorado'), 'readonly' => true, 'value' => $teacher['Teacher']['titulacao'])); ?>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">    
+                        <div class="form-group">
+                            <?php echo $this->Form->input('area', array('label' => 'Área', 'class' => 'form-control', 'readonly' => true, 'value' => $teacher['Teacher']['area'])); ?>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12"> 
+
+        <div class="panel panel-default">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <?php echo __('Relação de disciplinas'); ?>    
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                        <?php if (!empty($teacher['DisciplineGroup'])): ?>
+                            <tr>
+                                <th><?php echo __('Disciplina'); ?></th>
+                                <th><?php echo __('Tumra'); ?></th>
+                                <th><?php echo __('Ano'); ?></th>
+                                <th class="actions"><?php echo __('Actions'); ?></th>
+                            </tr>
+                            <?php foreach ($disciplineGroups as $disciplineGroup): ?>
+                                <tr>
+                                    <td><?php echo $disciplineGroup['Discipline']['nome']; ?></td>
+                                    <td><?php echo $disciplineGroup['Group']['nome']; ?></td>
+                                    <td><?php echo $disciplineGroup['Group']['ano']; ?></td>
+                                    <td class="actions">
+                                        <?php echo $this->Html->link(__('View'), array('controller' => 'discipline_groups', 'action' => 'view', $disciplineGroup['DisciplineGroup']['id'])); ?>
+                                        <?php echo $this->Html->link(__('Edit'), array('controller' => 'discipline_groups', 'action' => 'edit', $disciplineGroup['DisciplineGroup']['id'])); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>       
+
+
+
+<?php echo $this->Form->end(); ?>
+

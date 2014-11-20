@@ -1,3 +1,4 @@
+<h2><?php echo __('Professor'); ?></h2>
 <div class="teachers form">
 <?php echo $this->Form->create('Teacher'); ?>
 	
@@ -14,7 +15,6 @@
                         <?php echo $this->Form->input('nome', array('label' => 'Nome do Professor', 'class' => 'form-control')); ?>
                     </div>
                 </div>
-
 
                 <div class="col-lg-8">  
                     <div class="form-group">
@@ -131,12 +131,7 @@
                         <?php echo $this->Form->input('username', array('label' => 'Nome de Usuário', 'class' => 'form-control')); ?>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <?php echo $this->Form->input('password', array('label' => 'Senha', 'class' => 'form-control', 'maxlength'=>'12','size'=>'12')); ?>
-
-                    </div>
-                </div>
+                
  <?php echo $this->Form->input('id'); ?>
                 
             </div>

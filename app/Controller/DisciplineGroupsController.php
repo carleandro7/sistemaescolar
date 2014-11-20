@@ -39,7 +39,7 @@ class DisciplineGroupsController extends AppController {
 		$options = array('conditions' => array('DisciplineGroup.' . $this->DisciplineGroup->primaryKey => $id));
 		$this->set('disciplineGroup', $this->DisciplineGroup->find('first', $options));
                 $this->loadModel('Schedules');
-                $sql='SELECT `Schedules`.`id`,`Schedules`.`dia`,`Schedules`.`inicio`,`Schedules`.`fim`, `Schedules`.`discipline_groups_id`,`DisciplineGroups`.`id` FROM `escolabd`.`schedules` AS `Schedules` LEFT JOIN `escolabd`.`discipline_groups` AS `DisciplineGroups` ON (`Schedules`.`discipline_groups_id` = `DisciplineGroups`.`id`) where `DisciplineGroups`.`id`='.$id;
+                $sql='SELECT `Schedules`.`id`,`Schedules`.`dia`,`Schedules`.`inicio`,`Schedules`.`fim`, `Schedules`.`discipline_groups_id`,`DisciplineGroups`.`id` FROM `schedules` AS `Schedules` LEFT JOIN `discipline_groups` AS `DisciplineGroups` ON (`Schedules`.`discipline_groups_id` = `DisciplineGroups`.`id`) where `DisciplineGroups`.`id`='.$id;
                 $schedules=$this->Schedules->query($sql);
                 $this->set(compact('schedules'));
 	}
@@ -100,7 +100,7 @@ class DisciplineGroupsController extends AppController {
                                 if (!empty($idgroup)) {
                                     return $this->redirect(array('controller' => 'groups', 'action' => 'view', $idgroup));
                                 } else {
-                                        return $this->redirect(array('action' => 'view',$id));
+                                        return $this->redirect(array('action' => 'index'));
                                 }
                         } else {
 				$this->Session->setFlash(__('The discipline group could not be saved. Please, try again.'));

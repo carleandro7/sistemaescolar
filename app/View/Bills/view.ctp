@@ -1,29 +1,29 @@
-
-<h2><?php echo __('Bill'); ?></h2>
-<div class="col-lg-4"> 
-    <div class="well well-lg">
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($bill['Bill']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Dataavaliacao'); ?></dt>
-		<dd>
-			<?php echo h($bill['Bill']['dataavaliacao']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Descricao'); ?></dt>
-		<dd>
-			<?php echo h($bill['Bill']['descricao']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Discipline Group'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($bill['DisciplineGroup']['id'], array('controller' => 'discipline_groups', 'action' => 'view', $bill['DisciplineGroup']['id'])); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<h2><?php echo __('Dados da Nota'); ?></h2>
+<?php echo $this->Form->create('Bill'); ?>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Informações Gerais
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <dt><?php echo __('Data da avaliação'); ?></dt>
+                        <dd>
+                            <?php echo $this->Form->input('dataavaliacao', array('label' => false, 'readonly'=>true,'value'=>$bill['Bill']['dataavaliacao'])); ?>
+                            &nbsp;
+                        </dd>
+                    </div>
+                </div>
+                <div class="col-lg-8">  
+                    <div class="form-group">
+                        <?php echo $this->Form->input('descricao', array('label' => 'Descrição', 'class' => 'form-control', 'readonly'=>true,'value'=>$bill['Bill']['descricao'])); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
+<?php echo $this->Form->end(); ?>
 

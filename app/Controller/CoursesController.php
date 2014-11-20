@@ -43,7 +43,7 @@ class CoursesController extends AppController {
                 
                 $this->loadModel('Discipline');
                 
-                $sql='SELECT `Discipline`.`id`, `Discipline`.`nome`, `Discipline`.`course_id` FROM `escolabd`.`disciplines` AS `Discipline` WHERE `Discipline`.`course_id` = '. $id;
+                $sql='SELECT `Discipline`.`id`, `Discipline`.`nome`, `Discipline`.`course_id` FROM `disciplines` AS `Discipline` WHERE `Discipline`.`course_id` = '. $id;
                 $result= $this->Discipline->query($sql);
                 $this->set('disciplines',$result);
                 

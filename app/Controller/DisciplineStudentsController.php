@@ -56,9 +56,11 @@ class DisciplineStudentsController extends AppController {
 				$this->Session->setFlash(__('The discipline student could not be saved. Please, try again.'));
 			}
 		}
-		$disciplineGroups = $this->DisciplineStudent->DisciplineGroups->find('list');
+
+		$disciplineGroups = $this->DisciplineStudent->DisciplineGroups->query('SELECT `DisciplineGroups`.`id`, `DisciplineGroups`.`discipline_id`, `Disciplines`.`nome` FROM `discipline_groups` AS `DisciplineGroups`left join `disciplines`  as `Disciplines` ON (`DisciplineGroups`.`discipline_id` = `disciplines`.`id`)');
 		$students = $this->DisciplineStudent->Students->find('list', array('fields'=>array('nome')));
 		$this->set(compact('disciplineGroups', 'students'));
+                
 	}
 
 /**

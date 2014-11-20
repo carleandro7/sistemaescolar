@@ -113,21 +113,21 @@ class BillStudentsController extends AppController {
 			throw new NotFoundException(__('Invalid bill student'));
             }
                 $this->loadModel("Student");
-                $sql = "SELECT  `Student`.`nome` FROM `escolabd`.`discipline_students` AS `DisciplineStudent` "
-                        . "LEFT JOIN `escolabd`.`students` AS `Student` ON (`DisciplineStudent`.`students_id` = "
+                $sql = "SELECT  `Student`.`nome` FROM `discipline_students` AS `DisciplineStudent` "
+                        . "LEFT JOIN `students` AS `Student` ON (`DisciplineStudent`.`students_id` = "
                         . "`Student`.`id`) WHERE `DisciplineStudent`.`id` = ".$id;
                 $student = $this->Student->query($sql);
                 $this->loadModel("Discipline");
-                $sql = "SELECT `DisciplineStudent`.`id`, `Discipline`.`nome`, `Group`.`nome` FROM `escolabd`.`discipline_students` AS "
-                        . "`DisciplineStudent` LEFT JOIN `escolabd`.`discipline_groups` AS `DisciplineGroup` ON "
+                $sql = "SELECT `DisciplineStudent`.`id`, `Discipline`.`nome`, `Group`.`nome` FROM `discipline_students` AS "
+                        . "`DisciplineStudent` LEFT JOIN `discipline_groups` AS `DisciplineGroup` ON "
                         . "(`DisciplineGroup`.`id` = `DisciplineStudent`.`discipline_groups_id`) "
-                        . "LEFT JOIN `escolabd`.`groups` AS `Group` ON (`DisciplineGroup`.`group_id` = `group`.`id`) "
-                        . "LEFT JOIN `escolabd`.`disciplines` AS `Discipline` ON (`Discipline`.`id` = "
+                        . "LEFT JOIN `groups` AS `Group` ON (`DisciplineGroup`.`group_id` = `group`.`id`) "
+                        . "LEFT JOIN `disciplines` AS `Discipline` ON (`Discipline`.`id` = "
                         . "`DisciplineGroup`.`discipline_id`) WHERE `DisciplineStudent`.`id` = ".$id;
                 $discipline = $this->Discipline->query($sql); 
                 $this->loadModel('Frequency');
-                $sql = "SELECT SUM(`Frequency`.`falta`) FROM `escolabd`.`frequencies` AS `Frequency` LEFT JOIN "
-                        . "`escolabd`.`discipline_students` AS `DisciplineStudent` ON (`Frequency`.`discipline_student_id` "
+                $sql = "SELECT SUM(`Frequency`.`falta`) FROM `frequencies` AS `Frequency` LEFT JOIN "
+                        . "`discipline_students` AS `DisciplineStudent` ON (`Frequency`.`discipline_student_id` "
                         . "= `DisciplineStudent`.`id`) WHERE `Frequency`.`discipline_student_id` = ".$id;
                 $frequency = $this->Frequency->query($sql); 
                 $this->loadModel('Classnote');
@@ -149,21 +149,21 @@ class BillStudentsController extends AppController {
             }
                 ini_set('memory_limit', '512M');
                 $this->loadModel("Student");
-                $sql = "SELECT  `Student`.`nome` FROM `escolabd`.`discipline_students` AS `DisciplineStudent` "
-                        . "LEFT JOIN `escolabd`.`students` AS `Student` ON (`DisciplineStudent`.`students_id` = "
+                $sql = "SELECT  `Student`.`nome` FROM `discipline_students` AS `DisciplineStudent` "
+                        . "LEFT JOIN `students` AS `Student` ON (`DisciplineStudent`.`students_id` = "
                         . "`Student`.`id`) WHERE `DisciplineStudent`.`id` = ".$id;
                 $student = $this->Student->query($sql);
                 $this->loadModel("Discipline");
-                $sql = "SELECT `Discipline`.`nome`, `Group`.`nome`,`Group`.`ano`,`Group`.`nivel`,`Group`.`turno` FROM `escolabd`.`discipline_students` AS "
-                        . "`DisciplineStudent` LEFT JOIN `escolabd`.`discipline_groups` AS `DisciplineGroup` ON "
+                $sql = "SELECT `Discipline`.`nome`, `Group`.`nome`,`Group`.`ano`,`Group`.`nivel`,`Group`.`turno` FROM `discipline_students` AS "
+                        . "`DisciplineStudent` LEFT JOIN `discipline_groups` AS `DisciplineGroup` ON "
                         . "(`DisciplineGroup`.`id` = `DisciplineStudent`.`discipline_groups_id`) "
-                        . "LEFT JOIN `escolabd`.`groups` AS `Group` ON (`DisciplineGroup`.`group_id` = `group`.`id`) "
-                        . "LEFT JOIN `escolabd`.`disciplines` AS `Discipline` ON (`Discipline`.`id` = "
+                        . "LEFT JOIN `groups` AS `Group` ON (`DisciplineGroup`.`group_id` = `group`.`id`) "
+                        . "LEFT JOIN `disciplines` AS `Discipline` ON (`Discipline`.`id` = "
                         . "`DisciplineGroup`.`discipline_id`) WHERE `DisciplineStudent`.`id` = ".$id;
                 $discipline = $this->Discipline->query($sql); 
                 $this->loadModel('Frequency');
-                $sql = "SELECT SUM(`Frequency`.`falta`) FROM `escolabd`.`frequencies` AS `Frequency` LEFT JOIN "
-                        . "`escolabd`.`discipline_students` AS `DisciplineStudent` ON (`Frequency`.`discipline_student_id` "
+                $sql = "SELECT SUM(`Frequency`.`falta`) FROM `frequencies` AS `Frequency` LEFT JOIN "
+                        . "`discipline_students` AS `DisciplineStudent` ON (`Frequency`.`discipline_student_id` "
                         . "= `DisciplineStudent`.`id`) WHERE `Frequency`.`discipline_student_id` = ".$id;
                 $frequency = $this->Frequency->query($sql); 
                 $this->loadModel('Classnote');
@@ -188,7 +188,7 @@ class BillStudentsController extends AppController {
             ini_set('memory_limit', '512M');
             $this->loadModel('DisciplineStudent');
             $sql = "SELECT `DisciplineStudent`.`id`,`Discipline`.`nome`, `Group`.`nome`,`Group`.`ano`,`Group`.`nivel`,`Group`.`turno`, "
-                    . "`Group`.`id`, (SELECT SUM(`Frequency`.`falta`) FROM `escolabd`.`frequencies` AS `Frequency` WHERE "
+                    . "`Group`.`id`, (SELECT SUM(`Frequency`.`falta`) FROM `frequencies` AS `Frequency` WHERE "
                     . "`Frequency`.`discipline_student_id` = `DisciplineStudent`.`id` ) as `frequencias`,(SELECT SUM(`Classnote`.`qtdaula`)"
                     . " FROM `classnotes` as `Classnote` LEFT JOIN `discipline_groups` AS `DisciplineGroup` ON (`Classnote`.`discipline_group_id`"
                     . " = `DisciplineGroup`.`id`) WHERE `DisciplineGroup`.`id` =  `DisciplineStudent`.`discipline_groups_id`) as `qtdaula`,"

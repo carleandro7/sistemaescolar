@@ -37,7 +37,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 echo $this->Html->css('/plugins/morris');
                 echo $this->Html->css('font-awesome-4.1.0/css/font-awesome.min');
                 echo $this->Html->script('jquery.maskedinput-1.3');
+                echo $this->Html->script('funcoes');
 		echo $this->fetch('meta');
+                
 
 	?>
 </head>
@@ -59,7 +61,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 
 	<?php echo $this->element('sql_dump'); 
-         
+                            echo $this->Html->script('mascaras');
                             echo $this->Html->script('jquery-1.11.0');
                             echo $this->Html->script('bootstrap.min');
                             

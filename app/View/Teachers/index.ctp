@@ -1,4 +1,4 @@
-<h2><?php echo __('Teachers'); ?></h2>
+<h2><?php echo __('Professores'); ?></h2>
 
 
 
@@ -15,18 +15,13 @@
                         <thead>
                             <tr>
                                 <!--<th><?php echo $this->Paginator->sort('id'); ?></th>-->
-                                <th><?php echo $this->Paginator->sort('imagem'); ?></th>
                                 <th><?php echo $this->Paginator->sort('nome'); ?></th>
                                 <th><?php echo $this->Paginator->sort('fone'); ?></th>
-                                <th><?php echo $this->Paginator->sort('titulacao'); ?></th>
                                 <th><?php echo $this->Paginator->sort('area'); ?></th>
                                 <!--<th><?php echo $this->Paginator->sort('cep'); ?></th>-->
                                 <!--<th><?php echo $this->Paginator->sort('logradouro'); ?></th>-->
                                 <!--<th><?php echo $this->Paginator->sort('numero'); ?></th>-->
                                 <!--<th><?php echo $this->Paginator->sort('bairro'); ?></th>-->
-                                <th><?php echo $this->Paginator->sort('cidade'); ?></th>
-                                <th><?php echo $this->Paginator->sort('estado'); ?></th>
-                                <th><?php echo $this->Paginator->sort('email'); ?>
                                 <!--<th><?php echo $this->Paginator->sort('username'); ?></th>-->
                                 <!--<th><?php echo $this->Paginator->sort('password'); ?></th>-->
                                 <th class="actions"><?php echo __('Actions'); ?></th>
@@ -36,24 +31,20 @@
                             <?php foreach ($teachers as $teacher): ?>
                                 <tr>
                                     <!--<td><?php echo h($teacher['Teacher']['id']); ?>&nbsp;</td>-->
-                                    <td><?php echo h($teacher['Teacher']['imagem']); ?>&nbsp;</td>
                                     <td><?php echo h($teacher['Teacher']['nome']); ?>&nbsp;</td>
                                     <td><?php echo h($teacher['Teacher']['fone']); ?>&nbsp;</td>
-                                    <td><?php echo h($teacher['Teacher']['titulacao']); ?>&nbsp;</td>
                                     <td><?php echo h($teacher['Teacher']['area']); ?>&nbsp;</td>
                                     <!--<td><?php echo h($teacher['Teacher']['cep']); ?>&nbsp;</td>-->
                                     <!--<td><?php echo h($teacher['Teacher']['logradouro']); ?>&nbsp;</td>-->
                                     <!--<td><?php echo h($teacher['Teacher']['numero']); ?>&nbsp;</td>-->
                                     <!--<td><?php echo h($teacher['Teacher']['bairro']); ?>&nbsp;</td>-->
-                                    <td><?php echo h($teacher['Teacher']['cidade']); ?>&nbsp;</td>
-                                    <td><?php echo h($teacher['Teacher']['estado']); ?>&nbsp;</td>
-                                    <td><?php echo h($teacher['Teacher']['email']); ?>&nbsp;</td>
                                     <!--<td><?php echo h($teacher['Teacher']['username']); ?>&nbsp;</td>-->
                                     <!--<td><?php echo h($teacher['Teacher']['password']); ?>&nbsp;</td>-->
                                     <td class="actions">
                                         <?php echo $this->Html->link(__('View'), array('action' => 'view', $teacher['Teacher']['id'])); ?>
                                         <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $teacher['Teacher']['id'])); ?>
-                                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $teacher['Teacher']['id']), array(), __('Are you sure you want to delete # %s?', $teacher['Teacher']['id'])); ?>
+                                        <?php echo $this->Html->link(__('Senha'), array('action' => 'altsenha', $teacher['Teacher']['id'])); ?>
+                                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $teacher['Teacher']['id']), array(), __('Deseja deletar # %s?', $teacher['Teacher']['nome'])); ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

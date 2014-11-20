@@ -9,8 +9,6 @@
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-
-
                         <thead>
                             <tr>
                                 <!--<th><?php echo $this->Paginator->sort('id'); ?></th>-->
@@ -29,6 +27,7 @@
                                         <?php echo $this->Html->link($discipline['Course']['nome'], array('controller' => 'courses', 'action' => 'view', $discipline['Course']['id'])); ?>
                                     </td>
                                     <td class="actions">
+                                        <?php echo $this->Html->link(__('View'), array('action' => 'view', $discipline['Discipline']['id'])); ?>
                                         <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $discipline['Discipline']['id'])); ?>
                                         <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $discipline['Discipline']['id']), array(), __('Deseja deletar # %s?', $discipline['Discipline']['nome'])); ?>
                                     </td>

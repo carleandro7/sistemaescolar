@@ -1,4 +1,4 @@
-<h2><?php echo __('Courses'); ?></h2>
+<h2><?php echo __('Cursos'); ?></h2>
 
 <div class="row">
     <div class="col-lg-12">

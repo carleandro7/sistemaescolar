@@ -98,6 +98,18 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Usuários<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                 <li>
+                                    <?php echo $this->Html->link(__('Lista'), array('controller' => 'Users', 'action' => 'index')); ?>
+                                </li>
+                                <li>
+                                   <?php echo $this->Html->link(__('Adicionar'), array('controller' => 'Users', 'action' => 'indexadd')); ?>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

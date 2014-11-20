@@ -17,7 +17,6 @@
                                         <tr>
                                             <th><?php echo $this->Paginator->sort('nome','Nome'); ?></th>
                                             <th><?php echo $this->Paginator->sort('zona','Zona'); ?></th>
-                                            <th><?php echo $this->Paginator->sort('cidade','Cidade'); ?></th>
                                             <th><?php echo $this->Paginator->sort('telefone','Telefone'); ?></th>
                                             <th class="actions"><?php echo __('Actions'); ?></th>
                                         </tr>
@@ -27,13 +26,12 @@
                                             <tr class="odd gradeX">
                                                     <td><?php echo h($school['School']['nome']); ?>&nbsp;</td>
                                                     <td><?php echo h($school['School']['zona']); ?>&nbsp;</td>
-                                                    <td><?php echo h($school['School']['cidade']); ?>&nbsp;</td>
                                                     <td><?php echo h($school['School']['telefone']); ?>&nbsp;</td>
 
                                                     <td lass="center">
                                                             <?php echo $this->Html->link(__('View'), array('action' => 'view', $school['School']['id'])); ?>
                                                             <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $school['School']['id'])); ?>
-                                                            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $school['School']['id']), array(), __('Are you sure you want to delete # %s?', $school['School']['id'])); ?>
+                                                            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $school['School']['id']), array(), __('Deseja deletar # %s?', $school['School']['nome'])); ?>
                                                             <?php echo $this->Html->link(__('PDF'), array('action' => 'view_pdf', 'ext' => 'pdf', $school['School']['id']),  array('target' => '_blank'));?>
                                                     </td>
                                             </tr>

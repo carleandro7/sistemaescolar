@@ -39,7 +39,12 @@ class TeachersController extends AppController {
 		$options = array('conditions' => array('Teacher.' . $this->Teacher->primaryKey => $id));
 		$this->set('teacher', $this->Teacher->find('first', $options));
                 $this->loadModel('DisciplineGroup');   
-                $sql='SELECT `DisciplineGroup`.`id`, `DisciplineGroup`.`teacher_id`, `DisciplineGroup`.`discipline_id`, `DisciplineGroup`.`group_id`, `Discipline`.`id`, `Discipline`.`nome`, `Group`.`id`, `Group`.`nome`, `Group`.`ano` FROM `escolabd`.`discipline_groups` AS `DisciplineGroup` LEFT JOIN `escolabd`.`disciplines` AS `Discipline` ON (`DisciplineGroup`.`discipline_id` = `Discipline`.`id`) LEFT JOIN `escolabd`.`groups` AS `Group` ON (`DisciplineGroup`.`group_id` = `Group`.`id`) WHERE `DisciplineGroup`.`teacher_id` = '. $id;
+                $sql='SELECT `DisciplineGroup`.`id`, `DisciplineGroup`.`teacher_id`, `DisciplineGroup`.`discipline_id`, '
+                        . '`DisciplineGroup`.`group_id`, `Discipline`.`id`, `Discipline`.`nome`, `Group`.`id`, '
+                        . '`Group`.`nome`, `Group`.`ano` FROM `discipline_groups` AS `DisciplineGroup` LEFT JOIN '
+                        . '`disciplines` AS `Discipline` ON (`DisciplineGroup`.`discipline_id` = `Discipline`.`id`) '
+                        . 'LEFT JOIN `groups` AS `Group` ON (`DisciplineGroup`.`group_id` = `Group`.`id`) WHERE '
+                        . '`DisciplineGroup`.`teacher_id` = '. $id.' AND `Group`.`status` = "ATIVO"';
                 
                 $disciplineGroups= $this->DisciplineGroup->query($sql);
                 $this->set(compact('disciplineGroups'));
@@ -70,6 +75,22 @@ class TeachersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		if (!$this->Teacher->exists($id)) {
+			throw new NotFoundException(__('Invalid teacher'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Teacher->save($this->request->data)) {
+				$this->Session->setFlash(__('The teacher has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The teacher could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('Teacher.' . $this->Teacher->primaryKey => $id));
+			$this->request->data = $this->Teacher->find('first', $options);
+		}
+	}
+        public function altsenha($id = null) {
 		if (!$this->Teacher->exists($id)) {
 			throw new NotFoundException(__('Invalid teacher'));
 		}

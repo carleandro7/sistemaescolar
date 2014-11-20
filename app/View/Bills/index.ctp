@@ -1,5 +1,4 @@
-
-	<h2><?php echo __('Notas'); ?></h2>
+<h2><?php echo __('Notas'); ?></h2>
 <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -26,7 +25,7 @@
                                             <td class="actions">
                                                     <?php echo $this->Html->link(__('View'), array('action' => 'view', $bill['Bill']['id'])); ?>
                                                     <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $bill['Bill']['id'])); ?>
-                                                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $bill['Bill']['id'],$bills[0]['Bill']['discipline_group_id']), array(), __('Are you sure you want to delete # %s?', $bill['Bill']['id'])); ?>
+                                                    <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $bill['Bill']['id'],$bills[0]['Bill']['discipline_group_id']), array(), __('Deseja deletar nota # %s?', $bill['Bill']['dataavaliacao'])); ?>
                                             </td>
                                     </tr>
                             <?php endforeach; ?>
