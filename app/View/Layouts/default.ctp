@@ -60,7 +60,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</div>
 
 
-	<?php echo $this->element('sql_dump'); 
+	<?php //echo $this->element('sql_dump'); 
                             echo $this->Html->script('mascaras');
                             echo $this->Html->script('jquery-1.11.0');
                             echo $this->Html->script('bootstrap.min');
