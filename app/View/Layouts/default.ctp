@@ -30,14 +30,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
 		echo $this->fetch('script');
                 echo $this->Html->css('cake.generic');
-                echo $this->Html->css('bootstrap');
+                echo $this->Html->css('bootstrap.min');
                 echo $this->Html->css('/plugins/metisMenu/metisMenu.min');
                 echo $this->Html->css('/plugins/timeline');
                 echo $this->Html->css('sb-admin-2');
                 echo $this->Html->css('/plugins/morris');
                 echo $this->Html->css('font-awesome-4.1.0/css/font-awesome.min');
+                
                 echo $this->Html->script('jquery.maskedinput-1.3');
                 echo $this->Html->script('funcoes');
+                         
 		echo $this->fetch('meta');
                 
 
@@ -47,6 +49,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="wrapper">
 
         <?php echo $this->element('MenuPrincipal');?>
+         </div>
 
 	<div id="page-wrapper">
 
@@ -57,19 +60,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<div id="footer">
 		
 		</div>
-	</div>
+
 
 
 	<?php //echo $this->element('sql_dump'); 
+ 
                             echo $this->Html->script('mascaras');
-                            echo $this->Html->script('jquery-1.11.0');
+                            echo $this->Html->script('jquery');
                             echo $this->Html->script('bootstrap.min');
-                            
+                            echo $this->Html->script('metisMenu.min');//nao esta chamando
                             echo $this->Html->script('/plugins/morris/raphael.min');
                             echo $this->Html->script('/plugins/morris/morris.min');
                             echo $this->Html->script('/plugins/morris/morris-data');
-                            echo $this->Html->script('sb-admin-2');
-                            echo $this->Html->script('metisMenu.min');
+                            
+                            echo $this->Html->script('sb-admin-2');//nao esta chamando
+                           
+                  
 
         ?>
 </body>
