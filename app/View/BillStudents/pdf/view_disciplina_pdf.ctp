@@ -1,6 +1,6 @@
 <html>
     <head>
-        <style="text/css">
+        <style="text/css" >
             body {
             font-family: Courier New;
             margin: 0;

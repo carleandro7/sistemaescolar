@@ -17,7 +17,7 @@
                         <th><?php echo $this->Paginator->sort('Student.nome','Estudante'); ?></th>
 			<th><?php echo $this->Paginator->sort('Group.nome', 'Turmas'); ?></th>
 			<th><?php echo $this->Paginator->sort('datacadastro'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<!--<th class="actions"><?php echo __('Actions'); ?></th>-->
 	</tr>
 	</thead>
 	<tbody>
@@ -30,9 +30,9 @@
                     <?php echo $this->Html->link($groupStudent['Group']['nome'], array('controller' => 'groups', 'action' => 'view', $groupStudent['Group']['id'])); ?>
 		</td>
 		<td><?php echo h($groupStudent['GroupStudent']['datacadastro']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $groupStudent['GroupStudent']['id']), array(), __('Deseja deletar Estudante # %s?', $groupStudent['Student']['nome'])); ?>
-		</td>
+		<!--<td class="actions">-->
+			<?php //echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $groupStudent['GroupStudent']['id']), array(), __('Deseja deletar Estudante # %s?', $groupStudent['Student']['nome'])); ?>
+		<!--</td>-->
 	</tr>
 <?php endforeach; ?>
 	</tbody>

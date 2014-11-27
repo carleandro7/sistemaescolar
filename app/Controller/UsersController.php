@@ -59,6 +59,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+           $id= descriptografa($id);
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -73,7 +74,15 @@ class UsersController extends AppController {
  *
  * @return void
  */
+        function verificarADM(){
+            if($this->Session->read('Auth.User.perfil')=='Administrador'){
+                return true;
+            }else{
+                return false;
+            }
+        }
 	public function add() {
+            if($this->verificarADM()){
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -85,6 +94,9 @@ class UsersController extends AppController {
 		}
 		$schools = $this->User->School->find('list', array('fields'=>array('nome')));
 		$this->set(compact('schools'));
+            }  else {
+                return $this->redirect(array('action' => 'index'));
+            }
 	}
 
 /**
@@ -95,6 +107,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            
+            if($this->verificarADM()){
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -111,8 +125,13 @@ class UsersController extends AppController {
 		}
 		$schools = $this->User->School->find('list', array('fields'=>array('nome')));
 		$this->set(compact('schools'));
+            }  else {
+                return $this->redirect(array('action' => 'index'));
+            }
 	}
         public function altsenha($id = null) {
+           
+            if($this->verificarADM()){
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -129,6 +148,9 @@ class UsersController extends AppController {
 		}
 		$schools = $this->User->School->find('list', array('fields'=>array('nome')));
 		$this->set(compact('schools'));
+            }  else {
+                return $this->redirect(array('action' => 'index'));
+            }
 	}
 
 
@@ -140,6 +162,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+            if($this->verificarADM()){
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -151,5 +174,8 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'indexadd'));
+            }  else {
+                return $this->redirect(array('action' => 'index'));
+            }
 	}
 }

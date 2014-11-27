@@ -100,7 +100,7 @@ class SchedulesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Schedule->delete()) {
-			$this->Session->setFlash(__('The schedule has been deleted.'));
+			return $this->redirect(array('controller' => 'disciplineGroups', 'action' => 'view', $idDisciplineGroup));
 		} else {
 			$this->Session->setFlash(__('The schedule could not be deleted. Please, try again.'));
 		}

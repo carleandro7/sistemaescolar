@@ -1,7 +1,6 @@
 
 <h2><?php echo __('Turma - Estudantes'); ?></h2>
 
-<?php echo $this->Form->create('Group'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -87,15 +86,14 @@
 
                                     <td class="actions">
                                         <?php echo $this->Html->link(__('View'), array('controller' => 'Students', 'action' => 'view', $groupStudent['Student']['id'])); ?>
-                                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'GroupStudents', 'action' => 'delete', $groupStudent['GroupStudent']['id'], $group['Group']['id'], $groupStudent['Student']['id']), array(), __('Are you sure you want to delete Matricula# %s?', $groupStudent['Student']['nome'])); ?>
+                                        <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'GroupStudents', 'action' => 'delete', $groupStudent['GroupStudent']['id'], $group['Group']['id'], $groupStudent['Student']['id']), array(), __('Deseja deletar Matricula de aluno# %s?', $groupStudent['Student']['nome'])); ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </table>
-                    <?php echo $this->Html->link(__('Adicionar Estudante'), array('controller' => 'groupstudents', 'action' => 'add', $group['Group']['id'])); ?>
+                    <?php echo $this->Html->link(__('Adicionar Estudante'), array('controller' => 'groupStudents', 'action' => 'add', $group['Group']['id'])); ?>
                 </div>
             </div>
         </div>
     </div>
-</div><?php echo $this->Form->end(); ?>

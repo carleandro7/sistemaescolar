@@ -1,6 +1,6 @@
 <h2><?php echo __('Editar Estudante'); ?></h2>
-			<?php echo $this->Html->link('Listar Turmas', array('controller' => 'groupstudents', 'action' => 'groupsview', $student['Student']['id'])); ?>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <?php echo $this->Html->link('Listar Disciplinas', array('controller' => 'disciplinestudents', 'action' => 'disciplines', $student['Student']['id'])); ?>&nbsp;&nbsp;&nbsp;&nbsp;
+			<?php echo $this->Html->link('Listar Turmas', array('controller' => 'groupStudents', 'action' => 'groupsview', $student['Student']['id'])); ?>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <?php echo $this->Html->link('Listar Disciplinas', array('controller' => 'disciplineStudents', 'action' => 'disciplines', $student['Student']['id'])); ?>&nbsp;&nbsp;&nbsp;&nbsp;
                         <?php echo $this->Html->link('Listar Pagamentos', array('controller' => 'schools', 'action' => 'view', $student['School']['id'])); ?>
 
 <?php echo $this->Form->create('Student'); ?>

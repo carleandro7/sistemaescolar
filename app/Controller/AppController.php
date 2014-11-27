@@ -52,5 +52,5 @@ class AppController extends Controller {
           'download' => true,
           'filename' => 'invoice-2005.pdf'
         );
-    }
+    }    
 }

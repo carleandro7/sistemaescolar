@@ -46,15 +46,35 @@ class GroupStudentsController extends AppController {
  *
  * @return void
  */
-	public function add($id = null) {
-		if ($this->request->is('post')) {
-			$this->GroupStudent->create();
-			if ($this->GroupStudent->save($this->request->data)) {
-				$this->Session->setFlash(__('The group student has been saved.'));
+       function verificaMatricula($idstudents, $idgroup){
+            $sql='SELECT COUNT(`GroupStudents`.`id`)FROM `group_students` AS `GroupStudents` LEFT JOIN '
+                    . '`students` as `Students` ON (`Students`.`id` = `GroupStudents`.`student_id`)  '
+                    . 'WHERE `Students`.`id` = '.$idstudents.' AND `GroupStudents`.`group_id` = '.$idgroup;
+            $resultado=$this->GroupStudent->query($sql);
+            if($resultado[0][0]['COUNT(`GroupStudents`.`id`)'] == 0){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
+        function salvar(){
+            if ($this->GroupStudent->save($this->request->data)) {
+                            	$this->Session->setFlash(__('The group student has been saved.'));
 				return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $this->request->data('GroupStudent.group_id')));
-			} else {
+                } else {
 				$this->Session->setFlash(__('The group student could not be saved. Please, try again.'));
-			}
+		}
+        }
+
+        public function add($id = null) {
+		if ($this->request->is('post')) {
+                    if($this->verificaMatricula($this->request->data('GroupStudent.student_id'),$this->request->data('GroupStudent.group_id'))){
+                  	$this->GroupStudent->create();
+			$this->salvar();
+                    }else{
+                	$this->Session->setFlash(__('Aluno já está matriculado nessa Turma.'));
+                    }
 		}
                 $options = array('fields'=>array('nome'),'conditions' => array('Group.id' => $id));
 		$groups = $this->GroupStudent->Group->find('list', $options);
@@ -62,14 +82,13 @@ class GroupStudentsController extends AppController {
 		$this->set(compact('groups', 'students'));
 	}
         public function addstudents() {
-		if ($this->request->is('post')) {
-			$this->GroupStudent->create();
-			if ($this->GroupStudent->save($this->request->data)) {
-				$this->Session->setFlash(__('The group student has been saved.'));
-				return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $this->request->data('GroupStudent.group_id')));
-			} else {
-				$this->Session->setFlash(__('The group student could not be saved. Please, try again.'));
-			}
+		if ($this->request->is('post')) {                                 
+                    if($this->verificaMatricula($this->request->data('GroupStudent.student_id'),$this->request->data('GroupStudent.group_id'))){
+                  	$this->GroupStudent->create();
+			$this->salvar();
+                    }else{
+                       	$this->Session->setFlash(__('Aluno já está matriculado nessa Turma.'));
+                    }
 		}
 		$groups = $this->GroupStudent->Group->find('list', array('fields'=>array('nome')));
        		$students = $this->GroupStudent->Student->find('list', array('fields'=>array('nome')));
@@ -116,20 +135,14 @@ class GroupStudentsController extends AppController {
 			throw new NotFoundException(__('Invalid group student'));
 		}
                 $this->loadModel('DisciplineStudent');
-                $sql='SELECT `DisciplineStudent`.`id`, `DisciplineStudent`.`status`, `DisciplineStudent`.`discipline_groups_id`, `DisciplineStudent`.`students_id`, `DisciplineGroups`.`id`, `DisciplineGroups`.`discipline_id`, `DisciplineGroups`.`group_id`, `Students`.`id`, `Students`.`nome` FROM `discipline_students` AS `DisciplineStudent` LEFT JOIN `discipline_groups` AS `DisciplineGroups` ON (`DisciplineStudent`.`discipline_groups_id` = `DisciplineGroups`.`id`) LEFT JOIN `students` AS `Students` ON (`DisciplineStudent`.`students_id` = `Students`.`id`) WHERE `Students`.`id` = '.$idstudent.' AND `DisciplineGroups`.`group_id` ='.$idgroup .' AND `DisciplineStudent`.`status`= "ATIVO"';
-                $disciplineStudents=$this->DisciplineStudent->query($sql);
-                if(empty($disciplineStudents)){
+                
                     $this->request->allowMethod('post', 'delete');
                     if ($this->GroupStudent->delete()) {
                             $this->Session->setFlash(__('The group student has been deleted.'));
                     } else {
                             $this->Session->setFlash(__('The group student could not be deleted. Please, try again.'));
                     }
-                    return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $idgroup));
-                }else{
-                    $this->Session->setFlash(__('The group student could not be deleted. Please, try again.'));
-                    return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $idgroup));
-                }
+                    return $this->redirect(array('controller' => 'groups', 'action' => 'viewstudents', $idgroup));                
 	}
         
         public function groupsview($id = null){
@@ -145,5 +158,7 @@ class GroupStudentsController extends AppController {
                 $groupStudents  = $this->Paginator->paginate('GroupStudent');
                 $this->set(compact('groupStudents'));
         }
+        
+       
         
 }

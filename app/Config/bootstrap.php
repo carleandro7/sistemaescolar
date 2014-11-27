@@ -106,3 +106,14 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+
+  function criptografa($id){
+        $id='3454564'.$id.'7452419';
+        return base64_encode($id);
+  }
+  function descriptografa($id){
+        $id1= base64_decode($id);
+        $id2=substr($id1,7,-7);
+        return $id2;
+  }

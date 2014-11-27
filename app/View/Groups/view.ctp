@@ -1,7 +1,6 @@
 
 <h2><?php echo __('Turma - Disciplinas'); ?></h2>
 
-<?php echo $this->Form->create('Group'); ?>
 	
     <div class="row">
     <div class="col-lg-12">
@@ -100,7 +99,7 @@
                                 <?php endforeach; ?>
                                         <?php endif; ?>
                                 </table>
-                                <?php echo $this->Html->link(__('Nova Disciplina Turma'), array('controller' => 'disciplinegroups', 'action' => 'addgroup', $group['Course']['id'], $group['Group']['id']));?>
+                                <?php echo $this->Html->link(__('Nova Disciplina Turma'), array('controller' => 'disciplineGroups', 'action' => 'addgroup', $group['Course']['id'], $group['Group']['id']));?>
                              </div>
                         </div>
                         
@@ -110,4 +109,3 @@
  </div>       
         
    
-<?php echo $this->Form->end(); ?>

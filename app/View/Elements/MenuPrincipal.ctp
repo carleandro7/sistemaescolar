@@ -110,9 +110,11 @@
                                  <li>
                                     <?php echo $this->Html->link(__('Lista'), array('controller' => 'Users', 'action' => 'index')); ?>
                                 </li>
+                              <?php if($this->Session->read('Auth.User.perfil')== 'Administrador'){?>
                                 <li>
                                    <?php echo $this->Html->link(__('Adicionar'), array('controller' => 'Users', 'action' => 'indexadd')); ?>
                                 </li>
+                              <?php }?>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

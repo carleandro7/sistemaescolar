@@ -32,7 +32,7 @@
                                         <?php echo $this->Html->link($user['School']['nome'], array('controller' => 'schools', 'action' => 'view', $user['School']['id'])); ?>
                                     </td>
                                     <td class="actions">
-                                        <?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
+                                        <?php echo $this->Html->link(__('View'), array('action' => 'view', criptografa($user['User']['id']))); ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

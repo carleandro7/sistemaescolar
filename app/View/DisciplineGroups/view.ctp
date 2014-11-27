@@ -1,7 +1,6 @@
 
 <h2><?php echo __('Disciplina'); ?></h2>
 
-<?php echo $this->Form->create('Discipline Group'); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -71,6 +70,7 @@
                                     <td class="actions">
 
                                         <?php echo $this->Html->link(__('Edit'), array('controller' => 'Schedules', 'action' => 'edit', $schedule['Schedules']['id'], $disciplineGroup['DisciplineGroup']['id'])); ?>
+                                        <?php echo $schedule['Schedules']['id'].' . '.$disciplineGroup['DisciplineGroup']['id'];?>
                                         <?php echo $this->Form->postLink(__('Delete'), array('controller' => 'Schedules', 'action' => 'delete', $schedule['Schedules']['id'], $disciplineGroup['DisciplineGroup']['id']), array(), __('Deseja deletar horario # %s?', $schedule['Schedules']['dia'])); ?>
                                     </td>
                                 </tr>
@@ -83,4 +83,3 @@
             </div>
         </div>
     </div>
-</div><?php echo $this->Form->end(); ?>

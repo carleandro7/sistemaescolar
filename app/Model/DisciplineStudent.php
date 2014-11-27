@@ -15,7 +15,7 @@ class DisciplineStudent extends AppModel {
  */
     public function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
-        $sql = "  SELECT `Discipline`.`nome` FROM `escolabd`.`disciplines` AS `Discipline` where `Discipline`.id = `DisciplineGroups`.`discipline_id`";
+        $sql = "  SELECT `Discipline`.`nome` FROM `disciplines` AS `Discipline` where `Discipline`.id = `DisciplineGroups`.`discipline_id`";
         $this->virtualFields['nomeDisciplina'] = $sql;
     }
 	public $validate = array(

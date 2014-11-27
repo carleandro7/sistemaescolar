@@ -1,5 +1,5 @@
 <h2><?php echo __('Adicionar GroupStudent'); ?></h2>
-<?php echo $this->Form->create('GroupStudent'); ?>
+<?php echo $this->Form->create('GroupStudent');?>
 <div class="row">
     <div class="col-lg-12 col-md-12">
         <div class="panel panel-primary">

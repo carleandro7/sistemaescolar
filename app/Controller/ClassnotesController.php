@@ -117,14 +117,14 @@ class ClassnotesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null, $idclassnote=null) {
 		$this->Classnote->id = $id;
 		if (!$this->Classnote->exists()) {
 			throw new NotFoundException(__('Invalid classnote'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Classnote->delete()) {
-			$this->Session->setFlash(__('The classnote has been deleted.'));
+			return $this->redirect(array('action' => 'index',$idclassnote));
 		} else {
 			$this->Session->setFlash(__('The classnote could not be deleted. Please, try again.'));
 		}

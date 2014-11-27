@@ -23,7 +23,7 @@
                                     <td><?php echo h($classnote['Classnote']['assunto']); ?>&nbsp;</td>
                                     <td class="actions">
                                         <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $classnote['Classnote']['id'])); ?>
-                                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $classnote['Classnote']['id']), array(), __('Deletar aula # %s?', $classnote['Classnote']['assunto'])); ?>
+                                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $classnote['Classnote']['id'], $id), array(), __('Deletar aula # %s?', $classnote['Classnote']['assunto'])); ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

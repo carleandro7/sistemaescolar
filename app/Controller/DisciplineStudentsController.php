@@ -46,8 +46,21 @@ class DisciplineStudentsController extends AppController {
  *
  * @return void
  */
+        function verificarMatriculaDisc($idStudents,$idDisciplines){
+            $sql='SELECT COUNT(`DisciplineStudents`.`id`) FROM `discipline_students` AS `DisciplineStudents` left '
+                .'join `students`  as `Students` ON (`Students`.`id` = `DisciplineStudents`.`students_id`) WHERE'
+                .' `Students`.`id`= '.$idStudents.' AND `DisciplineStudents`.`discipline_groups_id`= '.$idDisciplines;
+            $resultado=$this->DisciplineStudent->query($sql);
+                  if($resultado[0][0]['COUNT(`DisciplineStudents`.`id`)'] == 0){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }
 	public function add() {
 		if ($this->request->is('post')) {
+                    if($this->verificarMatriculaDisc($this->request->data('DisciplineStudent.students_id'),$this->request->data('DisciplineStudent.discipline_groups_id'))){
 			$this->DisciplineStudent->create();
 			if ($this->DisciplineStudent->save($this->request->data)) {
 				$this->Session->setFlash(__('The discipline student has been saved.'));
@@ -55,9 +68,12 @@ class DisciplineStudentsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The discipline student could not be saved. Please, try again.'));
 			}
+                    }else{
+                       	$this->Session->setFlash(__('Aluno já está matriculado nessa Disciplina.'));
+                    }
 		}
 
-		$disciplineGroups = $this->DisciplineStudent->DisciplineGroups->query('SELECT `DisciplineGroups`.`id`, `DisciplineGroups`.`discipline_id`, `Disciplines`.`nome` FROM `discipline_groups` AS `DisciplineGroups`left join `disciplines`  as `Disciplines` ON (`DisciplineGroups`.`discipline_id` = `disciplines`.`id`)');
+		$disciplineGroups = $this->DisciplineStudent->DisciplineGroups->query('SELECT `DisciplineGroups`.`id`, `DisciplineGroups`.`discipline_id`, `Disciplines`.`nome` FROM `discipline_groups` AS `DisciplineGroups`left join `disciplines`  as `Disciplines` ON (`DisciplineGroups`.`discipline_id` = `Disciplines`.`id`)');
 		$students = $this->DisciplineStudent->Students->find('list', array('fields'=>array('nome')));
 		$this->set(compact('disciplineGroups', 'students'));
                 

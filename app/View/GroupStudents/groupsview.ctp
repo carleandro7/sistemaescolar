@@ -32,7 +32,7 @@
 		</td>
 		<td><?php echo h($groupStudent['GroupStudent']['datacadastro']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link('view', array('controller' => 'disciplinestudents', 'action' => 'disciplinegroups', $groupStudent['Student']['id'], $groupStudent['Group']['id'])); ?>
+			<?php echo $this->Html->link('view', array('controller' => 'disciplineStudents', 'action' => 'disciplinegroups', $groupStudent['Student']['id'], $groupStudent['Group']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
